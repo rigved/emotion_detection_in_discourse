@@ -1,0 +1,11 @@
+pprint
+numpy
+pandas
+matplotlib
+imbalanced-learn
+scikit-learn
+modAL
+nltk
+torch
+transformers
+text2emotion
