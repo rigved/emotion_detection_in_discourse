@@ -11,6 +11,9 @@ a Python virtual environment for this project.
 pip install -r requirements.txt
 ```
 
+If you would like to generate the documentation, then please install `doxygen` and `doxypy`
+via your system's package manager.
+
 
 # Data
 
@@ -59,6 +62,12 @@ jupyter notebook Exploratory_Data_Analysis.ipynb
 Once the Jupyter notebook is open, run `Kernel -> Restart & Run All` to re-run all the analysis.
 This analysis ia a work-in-progress as we complete the various parts
 of the project.
+
+If you would like to generate the documentation, then run the following command:
+
+```commandline
+./generate_documentation.sh
+```
 
 
 # References
