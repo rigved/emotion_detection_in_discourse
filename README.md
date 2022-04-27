@@ -1,5 +1,5 @@
 # Introduction
-Emotion cause extraction in U.S. Congressional Hearings using Emotion Appraisal Theory.
+Emotion detection in U.S. Congressional Hearings.
 
 
 # Installation
@@ -19,11 +19,9 @@ via your system's package manager.
 
 The data is available in the `data` folder. It contains the original
 20 U.S. Congressional Hearings data from Ferracane et al. (2021) as the file
-`expanded_with_features_annotated_questions_responses_gold.csv`.
-
-The files `q_emotion_predictions.csv` and `q_emotion_predictions.csv` contain the
-toy datasets generated using a pre-trained [RoBERTa](https://huggingface.co/j-hartmann/emotion-english-roberta-large)
-model fine-tuned on various emotion datasets.
+`expanded_with_features_annotated_questions_responses_gold.csv`. The emotion
+labels from the current annotations is saved in the file
+`emotion_data_annotated_by_humans.csv`.
 
 
 # Run
@@ -32,24 +30,15 @@ Run the code as follows:
 
 ```commandline
 cd code
-python file_name
+python proactive_learning.py
 ```
 
-where `file_name` could be one of the following:
-
-* `generate_toy_emotion_dataset.py`: This will use the pre-trained RoBERTa model to predict the
-                                     emotions within each sentence of the question-response pairs
-                                     from the original dataset (Ferracane et al., 2021). This saves the toy dataset as
-                                     `data/q_emotion_predictions.csv` and `data/r_emotion_predictions.csv`
-                                     for the questions and the responses respectively.
-* `visualize_sentence_embeddings.py`: This will visualize the sentence embeddings for each of the
-                                      sentences in the toy dataset.
-* `proactive_learning.py`: This emulates the Proactive Learning technique proposed by
-                           Donmez and Carbonell, 2008. It uses the toy dataset to emulate this
-                           Proactive Learning technique. It uses the modAL (Danka and Horvath, 2018) Python library
-                           as the Active Learning framework and builds on top of that.
-                           NOTE: This code is still a work-in-progress and doesn't completely
-                                 cover all aspects of the Proactive Learning technique yet.
+`proactive_learning.py`: This emulates the Proactive Learning technique proposed by
+                         Donmez and Carbonell, 2008. It uses the toy dataset to emulate this 
+                         Proactive Learning technique. It uses the modAL (Danka and Horvath, 2018) Python library
+                         as the Active Learning framework and builds on top of that.
+                         NOTE: This code is still a work-in-progress and doesn't completely 
+                         cover all aspects of the Proactive Learning technique yet.
 
 On the other hand, if you would like to run the exploratory data analysis Jupyter notebook, then
 run the following command:
@@ -57,6 +46,7 @@ run the following command:
 ```commandline
 cd code
 jupyter notebook Exploratory_Data_Analysis.ipynb
+jupyter notebook Exploratory_Data_Analysis_Survey.ipynb
 ```
 
 Once the Jupyter notebook is open, run `Kernel -> Restart & Run All` to re-run all the analysis.
