@@ -60,6 +60,11 @@ If you would like to generate the documentation, then run the following command:
 ```
 
 
+# Architecture
+
+![Architecture of the underlying Proactive Learner](Architecture_Diagram_Proactive_Learner.png "Proactive Learner Architecture")
+
+
 # References
 
 E. Ferracane, G. Durrett, J.J. Li, and K. Erk. 2021. Did they answer? subjective acts and intents in conversational discourse. In Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, pages 1626–1644, Online. Association for Computational Linguistics.
