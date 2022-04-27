@@ -67,7 +67,7 @@ If you would like to generate the documentation, then run the following command:
 
 # Results
 
-![Priliminary Results from the Proactive Learning experiment. NOTE: This is a work-in-progress and these results will be updated with better results.](/home/rigved/repos/rit/DSCI-601/emotion_detection_in_discourse/preliminary_results.png "Preliminary Results")
+![Priliminary Results from the Proactive Learning experiment. NOTE: This is a work-in-progress and these results will be updated with better results.](preliminary_results.png "Preliminary Results")
 
 
 # References
