@@ -184,7 +184,7 @@ class EmotionClassifier(BaseEstimator, ClassifierMixin):
                            Default: 8 (This batch size fits into the memory offered by an NVIDIA P4 GPU.)
         :param lr: Learning rate for the transformer head's optimizer. Default: 5e-5
         :param num_warmup_steps: Number of warmup steps for the learning rate scheduler during training.
-        :param n_iter: Number of epochs for the training. Default: 5
+        :param n_iter: Number of epochs for the training. Default: 25
         :param verbose: Output training progress and training loss if this is True.
         """
         self.plutchik_emotions = plutchik_emotions
@@ -214,10 +214,10 @@ class EmotionClassifier(BaseEstimator, ClassifierMixin):
         :return: Fitted model.
         """
         # Store the training loss so that it can be used later
-        self.training_loss_ = list()
+        self.training_loss_ = getattr(self, 'training_loss_', list())
 
         # Store the oracle selection history for review later
-        self.oracle_selection_history_ = list()
+        self.oracle_selection_history_ = getattr(self, 'oracle_selection_history_', list())
 
         # Default optimizer for the training
         optimizer = AdamW(self.model.parameters(), lr=self.lr)
@@ -402,7 +402,7 @@ class EmotionClassifier(BaseEstimator, ClassifierMixin):
         }
 
         if len(labels) != 0:
-            padded_data['labels'] = torch.tensor(labels).int().to(self.device)
+            padded_data['labels'] = torch.tensor(labels).float().to(self.device)
 
         return padded_data
 
@@ -460,7 +460,7 @@ def run_proactive_learning_experiment(
         instances_x_pool,
         instances_x_val,
         instances_y_val,
-        n_query_iterations=50,
+        n_query_iterations=25,
         n_instances_pool=100
 ):
     """
@@ -508,7 +508,7 @@ def run_proactive_learning_experiment(
         learner.estimator.model.to(learner.estimator.device)
 
         # Query the selected oracle for the labels
-        y_pool_pred = learner.predict(instances_x_pool.iloc[query_indexes])
+        y_pool_pred = pd.Series(list(multilabel_binarizer.transform(learner.predict(instances_x_pool.iloc[query_indexes]))))
 
         # Re-load the Proactive Learning model
         del learner.estimator.model
@@ -531,11 +531,10 @@ def run_proactive_learning_experiment(
             ).astype(np.int),
             np.stack(
                 multilabel_binarizer.transform(
-                    learner.predict(
-                        instances_x_val
-                    )
+                    learner.predict(instances_x_val)
                 )
-            ).astype(np.int))
+            ).astype(np.int)
+        )
         learner_performance_history.append(performance)
 
         # Pick the next oracle such that the cost is minimized using a greedy approach
@@ -561,7 +560,7 @@ def run_active_learning_experiment(
         instances_y_pool,
         instances_x_val,
         instances_y_val,
-        n_query_iterations=50,
+        n_query_iterations=25,
         n_instances_pool=100
 ):
     """
@@ -612,11 +611,11 @@ def run_active_learning_experiment(
                 ).astype(np.int),
                 np.stack(
                     multilabel_binarizer.transform(
-                        learner.predict(
-                            instances_x_val
-                        )
+                        learner.predict(instances_x_val)
                     )
-                ).astype(np.int)))
+                ).astype(np.int)
+            )
+        )
 
     return learner_performance_history
 
@@ -869,7 +868,7 @@ if __name__ == '__main__':
     )
     distilbert_active_learner = ActiveLearner(
         estimator=distilbert_emotion_classifier,
-        query_strategy=uncertainty_sampling,
+        query_strategy=margin_sampling,
         X_training=x_train,
         y_training=y_train
     )
@@ -924,7 +923,7 @@ if __name__ == '__main__':
 
     colors = ['indianred', 'slategray', 'blue', 'darkgreen', 'darkorange']
     markers = ['o', '^', 's', 'D', '1']
-    line_styles = ['dashed', 'dotted', 'dashdot', 'solid', 'loosely dashdotdotted']
+    line_styles = ['dashed', 'dotted', 'dashdot', 'solid', (0, (5, 10))]
     fig, ax = plt.subplots(figsize=(8.5, 6), dpi=300)
 
     for index, key in enumerate(sorted(hamming_score_history.keys())):
@@ -953,26 +952,31 @@ if __name__ == '__main__':
     # Plot the oracle selection history as a line graph
     fig, ax = plt.subplots(figsize=(8.5, 6), dpi=300)
 
-    ax.plot(
+    lns1 = ax.plot(
         distilbert_emotion_classifier.oracle_selection_history_,
-        color='black',
-        marker='o',
-        linestyle='solid'
+        label='Oracle #',
+        color='green'
     )
+    ax.tick_params(axis='y', labelcolor='green')
+
+    ax2 = ax.twinx()
+    lns2 = ax2.plot(
+        hamming_score_history['Proactive Learning Sampling'],
+        label='Hamming Score',
+        color='black'
+    )
+    ax2.tick_params(axis='y', labelcolor='black')
 
     ax.xaxis.set_major_locator(mpl.ticker.MaxNLocator(nbins=5, integer=True))
-    y_labels = [
-        'Least reliable oracle with lowest query cost',
-        '3rd most reliable oracle with 3rd highest query cost',
-        '2nd most reliable oracle with 2nd highest query cost',
-        'Most reliable oracle with highest query cost'
-    ]
-    ax.set_yticklabels(y_labels)
-
+    ax.set_yticks(range(4))
     ax.set_title('Oracle Selection History')
     ax.set_xlabel('Query iteration')
-    ax.set_ylabel('Oracle #')
+    ax.set_ylabel('Least reliable oracle (0) to Most reliable oracle (3)')
 
-    plt.legend()
+    ax2.set_ylabel('Hamming Score', rotation=270, labelpad=15)
+
+    lns = lns1 + lns2
+    labs = [l.get_label() for l in lns]
+    ax.legend(lns, labs, loc='center left')
 
     plt.savefig('oracle_selection_history_plot.png', bbox_inches='tight')
