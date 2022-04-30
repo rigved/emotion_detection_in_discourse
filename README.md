@@ -60,12 +60,17 @@ If you would like to generate the documentation, then run the following command:
 
 # Architecture
 
-![Architecture of the underlying Proactive Learner](Architecture_Diagram_Proactive_Learner.png "Proactive Learner Architecture")
+![Architecture of the underlying Proactive Learner](Architecture_Diagram_Proactive_Learner.png 'Proactive Learner Architecture')
+
+
+# Experimental Design
+
+![Experimental Design Methodology for the Proactive Learning experiment](Experiment_Design_Diagram_Proactive_Learner.png 'Experimental Design Methodology for the Proactive Learning experiment')
 
 
 # Results
 
-![Priliminary Results from the Proactive Learning experiment. NOTE: This is a work-in-progress and these results will be updated with better results.](preliminary_results.png "Preliminary Results")
+![Priliminary Results from the Proactive Learning experiment. NOTE: This is a work-in-progress and these results will be updated with better results.](preliminary_results.png 'Preliminary Results')
 
 
 # References
