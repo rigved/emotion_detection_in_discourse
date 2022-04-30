@@ -34,9 +34,8 @@ python proactive_learning.py
 ```
 
 `proactive_learning.py`: This emulates the Proactive Learning technique proposed by
-                         Donmez and Carbonell, 2008. It uses the toy dataset to emulate this 
-                         Proactive Learning technique. It uses the modAL (Danka and Horvath, 2018) Python library
-                         as the Active Learning framework and builds on top of that.
+                         Donmez and Carbonell, 2008. It uses the modAL (Danka and Horvath, 2018)
+                         Python library as the Active Learning framework and builds on top of that.
                          NOTE: This code is still a work-in-progress and doesn't completely 
                          cover all aspects of the Proactive Learning technique yet.
 
@@ -50,8 +49,7 @@ jupyter notebook Exploratory_Data_Analysis_Survey.ipynb
 ```
 
 Once the Jupyter notebook is open, run `Kernel -> Restart & Run All` to re-run all the analysis.
-This analysis ia a work-in-progress as we complete the various parts
-of the project.
+This analysis ia a work-in-progress as we complete the various parts of the project.
 
 If you would like to generate the documentation, then run the following command:
 
