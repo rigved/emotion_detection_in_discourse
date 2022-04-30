@@ -7,3 +7,6 @@ modAL
 nltk
 torch
 transformers
+tqdm
+seaborn
+cmasher
