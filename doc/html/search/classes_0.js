@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['discoursedataset',['DiscourseDataset',['../classgenerate__toy__emotion__dataset_1_1DiscourseDataset.html',1,'generate_toy_emotion_dataset.DiscourseDataset'],['../classvisualize__sentence__embeddings_1_1DiscourseDataset.html',1,'visualize_sentence_embeddings.DiscourseDataset']]]
+  ['emotionclassifier',['EmotionClassifier',['../classproactive__learning_1_1EmotionClassifier.html',1,'proactive_learning']]],
+  ['emotionsdataset',['EmotionsDataset',['../classproactive__learning_1_1EmotionsDataset.html',1,'proactive_learning']]]
 ];

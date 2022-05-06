@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['calculate_5futility_5fmeasure',['calculate_utility_measure',['../namespaceproactive__learning.html#a81682b98a555074d9b8c8deffd9d1a07',1,'proactive_learning']]]
+  ['collate_5fbatch',['collate_batch',['../classproactive__learning_1_1EmotionClassifier.html#ae3b4287e88a2cd55d245380b8c714b72',1,'proactive_learning::EmotionClassifier']]]
 ];

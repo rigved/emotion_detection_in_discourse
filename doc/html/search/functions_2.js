@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['fetch_5fsentence_5fembedding',['fetch_sentence_embedding',['../namespacevisualize__sentence__embeddings.html#ac9c78a4a3c496be2ebfca712b05f38d5',1,'visualize_sentence_embeddings']]]
+  ['easy_5fto_5fdifficult_5fquery_5fstrategy',['easy_to_difficult_query_strategy',['../namespaceproactive__learning.html#ae94f68456ceccd2f601e9c3bb553741e',1,'proactive_learning']]]
 ];

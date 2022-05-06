@@ -2,7 +2,7 @@
 
 ########################################################################################################################
 # What triggered that emotion? Emotion cause extraction in conversational discourse.
-# Copyright (C) 2021  Rigved Rakshit
+# Copyright (C) 2022  Rigved Rakshit
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published
@@ -19,10 +19,10 @@
 ########################################################################################################################
 
 # Create a temporary directory to store the modified code
-mkdir -p "code_doc"
+mkdir -p "src_doc"
 
 # Loop through every Python file
-for file in code/*.py; do
+for file in src/*.py; do
   # If the file is empty or doesn't exist, move on to the next one
   if [[ ! -s "${file}" ]]; then
     continue
@@ -34,11 +34,11 @@ for file in code/*.py; do
   echo "Preparing ${file} for doxygen..."
 
   # Convert the Python code into doxygen supported Python code
-  doxypy "code/${file}" > "code_doc/${file}"
+  doxypy "src/${file}" > "src_doc/${file}"
 done
 
 # Generate the documentation
 doxygen "emotion_discourse_doc.conf"
 
 # Remove the temporary code directory
-rm -r "code_doc"
+rm -r "src_doc"

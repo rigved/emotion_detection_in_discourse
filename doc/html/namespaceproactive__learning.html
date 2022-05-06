@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Emotion Triggers in Discourse: proactive_learning Namespace Reference</title>
+<title>Proactive Learning with Emotion Detection in non-cooperative Discourse: proactive_learning Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,10 +21,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Emotion Triggers in Discourse
+   <div id="projectname">Proactive Learning with Emotion Detection in non-cooperative Discourse
    &#160;<span id="projectnumber">0.1</span>
    </div>
-   <div id="projectbrief">Emotion classifier (using Emotion Appraisal Theory) for non-cooperative discourse settings.</div>
+   <div id="projectbrief">Emotion classifier for non-cooperative discourse settings and emotion annotated dataset.</div>
   </td>
  </tr>
  </tbody>
@@ -61,6 +61,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -68,204 +69,181 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classproactive__learning_1_1EmotionClassifier.html">EmotionClassifier</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classproactive__learning_1_1EmotionsDataset.html">EmotionsDataset</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a81682b98a555074d9b8c8deffd9d1a07"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceproactive__learning.html#a81682b98a555074d9b8c8deffd9d1a07">calculate_utility_measure</a> (classifier, instances)</td></tr>
-<tr class="separator:a81682b98a555074d9b8c8deffd9d1a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6835427b5e642d60154bb8712f9ea3c"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceproactive__learning.html#ab6835427b5e642d60154bb8712f9ea3c">instance_selector</a> (utility, n_instances=1)</td></tr>
-<tr class="separator:ab6835427b5e642d60154bb8712f9ea3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b25cd1b9eb5161984e841bd1e3aa042"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceproactive__learning.html#a5b25cd1b9eb5161984e841bd1e3aa042">proactive_learner_query_strategy</a> (classifier, instances, n_instances=1)</td></tr>
-<tr class="separator:a5b25cd1b9eb5161984e841bd1e3aa042"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae94f68456ceccd2f601e9c3bb553741e"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceproactive__learning.html#ae94f68456ceccd2f601e9c3bb553741e">easy_to_difficult_query_strategy</a> (classifier, instances, n_instances=65)</td></tr>
+<tr class="separator:ae94f68456ceccd2f601e9c3bb553741e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada82e19e11b68fa368857ea9941c2a39"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceproactive__learning.html#ada82e19e11b68fa368857ea9941c2a39">random_query_strategy</a> (classifier, instances, n_instances=65)</td></tr>
+<tr class="separator:ada82e19e11b68fa368857ea9941c2a39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8054ac5b6a29014dcbf127258b6b7a87"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceproactive__learning.html#a8054ac5b6a29014dcbf127258b6b7a87">run_proactive_learning_experiment</a> (learner, instances_x_pool, instances_x_val, instances_y_val, n_query_iterations=25, n_instances_pool=65)</td></tr>
+<tr class="separator:a8054ac5b6a29014dcbf127258b6b7a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92f2a9a0a095d1d8319a403939076851"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceproactive__learning.html#a92f2a9a0a095d1d8319a403939076851">run_active_learning_experiment</a> (learner, instances_x_pool, instances_y_pool, instances_x_val, instances_y_val, n_query_iterations=25, n_instances_pool=65)</td></tr>
+<tr class="separator:a92f2a9a0a095d1d8319a403939076851"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:aa4c4b25d29957c5102524dfe7ea6140e"><td class="memItemLeft" align="right" valign="top"><a id="aa4c4b25d29957c5102524dfe7ea6140e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>n_jobs</b> = 6</td></tr>
-<tr class="separator:aa4c4b25d29957c5102524dfe7ea6140e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6b55058c2a9513d96f6cac6b618212e"><td class="memItemLeft" align="right" valign="top"><a id="ad6b55058c2a9513d96f6cac6b618212e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>cv</b> = 10</td></tr>
-<tr class="separator:ad6b55058c2a9513d96f6cac6b618212e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a787fe57621315361137acecab6f1496d"><td class="memItemLeft" align="right" valign="top"><a id="a787fe57621315361137acecab6f1496d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>q_df</b> = pd.read_csv('../data/q_emotion_predictions.csv')</td></tr>
-<tr class="separator:a787fe57621315361137acecab6f1496d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfa07a2c59231c0b7c3f4f9f691ce710"><td class="memItemLeft" align="right" valign="top"><a id="acfa07a2c59231c0b7c3f4f9f691ce710"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>r_df</b> = pd.read_csv('../data/r_emotion_predictions.csv')</td></tr>
-<tr class="separator:acfa07a2c59231c0b7c3f4f9f691ce710"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f23a8cc498618c32f543ca6234034e5"><td class="memItemLeft" align="right" valign="top"><a id="a3f23a8cc498618c32f543ca6234034e5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>q_X_train</b></td></tr>
-<tr class="separator:a3f23a8cc498618c32f543ca6234034e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a54c0ff65cbd47a5bf81e6d8275519e"><td class="memItemLeft" align="right" valign="top"><a id="a3a54c0ff65cbd47a5bf81e6d8275519e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>q_X_test</b></td></tr>
-<tr class="separator:a3a54c0ff65cbd47a5bf81e6d8275519e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9019ae87ff88d1dec134aceab8626ff0"><td class="memItemLeft" align="right" valign="top"><a id="a9019ae87ff88d1dec134aceab8626ff0"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>q_y_train</b></td></tr>
-<tr class="separator:a9019ae87ff88d1dec134aceab8626ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ae2b075ff623900d45933695d6aaf27"><td class="memItemLeft" align="right" valign="top"><a id="a4ae2b075ff623900d45933695d6aaf27"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>q_y_test</b></td></tr>
-<tr class="separator:a4ae2b075ff623900d45933695d6aaf27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ee37c8c1a2ab5d85750a303f9774e65"><td class="memItemLeft" align="right" valign="top"><a id="a7ee37c8c1a2ab5d85750a303f9774e65"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>test_size</b></td></tr>
-<tr class="separator:a7ee37c8c1a2ab5d85750a303f9774e65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17acfa9d129b11ddc98bff0559366e8b"><td class="memItemLeft" align="right" valign="top"><a id="a17acfa9d129b11ddc98bff0559366e8b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>seed</b> = 42</td></tr>
+<tr class="separator:a17acfa9d129b11ddc98bff0559366e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c89c56e3759f0bf3d639bbe6351f0fc"><td class="memItemLeft" align="right" valign="top"><a id="a8c89c56e3759f0bf3d639bbe6351f0fc"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>raw_dataset</b> = pd.read_csv('../data/emotion_annotated_data.csv')</td></tr>
+<tr class="separator:a8c89c56e3759f0bf3d639bbe6351f0fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54d3e1aa244848be664d2d193552295b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>data</b></td></tr>
+<tr class="separator:a54d3e1aa244848be664d2d193552295b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5753dbe2cd95ac224a32a66da79df421"><td class="memItemLeft" align="right" valign="top"><a id="a5753dbe2cd95ac224a32a66da79df421"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>columns</b></td></tr>
+<tr class="separator:a5753dbe2cd95ac224a32a66da79df421"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab3d5ba6cb25f70ab326f5a352a88864"><td class="memItemLeft" align="right" valign="top"><a id="aab3d5ba6cb25f70ab326f5a352a88864"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>inplace</b></td></tr>
+<tr class="separator:aab3d5ba6cb25f70ab326f5a352a88864"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72f64675da27ed16660495204e8ce402"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><b>plutchik_emotions</b></td></tr>
+<tr class="separator:a72f64675da27ed16660495204e8ce402"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8ece1b6f2c4e994e6480f5b97d8e2bd"><td class="memItemLeft" align="right" valign="top"><a id="ad8ece1b6f2c4e994e6480f5b97d8e2bd"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>mlb</b> = MultiLabelBinarizer(classes=plutchik_emotions)</td></tr>
+<tr class="separator:ad8ece1b6f2c4e994e6480f5b97d8e2bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a800c5db05a1ebfdc6ff69128a3116b5d"><td class="memItemLeft" align="right" valign="top"><a id="a800c5db05a1ebfdc6ff69128a3116b5d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>x_train</b></td></tr>
+<tr class="separator:a800c5db05a1ebfdc6ff69128a3116b5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f89523addda1a4a20566ddbf4db26ca"><td class="memItemLeft" align="right" valign="top"><a id="a7f89523addda1a4a20566ddbf4db26ca"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>x_val</b></td></tr>
+<tr class="separator:a7f89523addda1a4a20566ddbf4db26ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19b4eaa3a6f70d4fa325ff514f279ba7"><td class="memItemLeft" align="right" valign="top"><a id="a19b4eaa3a6f70d4fa325ff514f279ba7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>y_train</b></td></tr>
+<tr class="separator:a19b4eaa3a6f70d4fa325ff514f279ba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a1e49c472e1fa7884f60f752b692920"><td class="memItemLeft" align="right" valign="top"><a id="a6a1e49c472e1fa7884f60f752b692920"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>y_val</b></td></tr>
+<tr class="separator:a6a1e49c472e1fa7884f60f752b692920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0981b9b0354d8cca8fef96a7bd074ef"><td class="memItemLeft" align="right" valign="top"><a id="ad0981b9b0354d8cca8fef96a7bd074ef"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>train_size</b></td></tr>
+<tr class="separator:ad0981b9b0354d8cca8fef96a7bd074ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a298890b55d5e4774b58bb704484d6aa2"><td class="memItemLeft" align="right" valign="top"><a id="a298890b55d5e4774b58bb704484d6aa2"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>random_state</b></td></tr>
 <tr class="separator:a298890b55d5e4774b58bb704484d6aa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af007074a3aa422201cd813293a2adee0"><td class="memItemLeft" align="right" valign="top"><a id="af007074a3aa422201cd813293a2adee0"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>stratify</b></td></tr>
-<tr class="separator:af007074a3aa422201cd813293a2adee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b9644c78c7f04d2782824259ea941fa"><td class="memItemLeft" align="right" valign="top"><a id="a9b9644c78c7f04d2782824259ea941fa"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>x_test</b></td></tr>
+<tr class="separator:a9b9644c78c7f04d2782824259ea941fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af35cf2e0bb678a4597d10855dfe2e098"><td class="memItemLeft" align="right" valign="top"><a id="af35cf2e0bb678a4597d10855dfe2e098"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>y_test</b></td></tr>
+<tr class="separator:af35cf2e0bb678a4597d10855dfe2e098"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a89c122de5c480e83c50c8f7abf736d"><td class="memItemLeft" align="right" valign="top"><a id="a9a89c122de5c480e83c50c8f7abf736d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>x_pool</b></td></tr>
+<tr class="separator:a9a89c122de5c480e83c50c8f7abf736d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d817383790d22dd730960f03473fe5e"><td class="memItemLeft" align="right" valign="top"><a id="a0d817383790d22dd730960f03473fe5e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>y_pool</b></td></tr>
+<tr class="separator:a0d817383790d22dd730960f03473fe5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a521f18b358c5a23ab79b9f0554cc663c"><td class="memItemLeft" align="right" valign="top"><a id="a521f18b358c5a23ab79b9f0554cc663c"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>drop</b></td></tr>
 <tr class="separator:a521f18b358c5a23ab79b9f0554cc663c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dd873b6a0e9c54115c0d15283fed28d"><td class="memItemLeft" align="right" valign="top"><a id="a7dd873b6a0e9c54115c0d15283fed28d"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>True</b></td></tr>
 <tr class="separator:a7dd873b6a0e9c54115c0d15283fed28d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab3d5ba6cb25f70ab326f5a352a88864"><td class="memItemLeft" align="right" valign="top"><a id="aab3d5ba6cb25f70ab326f5a352a88864"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>inplace</b></td></tr>
-<tr class="separator:aab3d5ba6cb25f70ab326f5a352a88864"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2689e1b4c34ee73fb7a1c6a2ad66361"><td class="memItemLeft" align="right" valign="top"><a id="ae2689e1b4c34ee73fb7a1c6a2ad66361"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>q_X_val</b></td></tr>
-<tr class="separator:ae2689e1b4c34ee73fb7a1c6a2ad66361"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a774528b3dae2ab684cdbb81c230fa5c9"><td class="memItemLeft" align="right" valign="top"><a id="a774528b3dae2ab684cdbb81c230fa5c9"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>q_y_val</b></td></tr>
-<tr class="separator:a774528b3dae2ab684cdbb81c230fa5c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe7866f67093da2a3946e1207bc4b88e"><td class="memItemLeft" align="right" valign="top"><a id="afe7866f67093da2a3946e1207bc4b88e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>q_X_pool</b></td></tr>
-<tr class="separator:afe7866f67093da2a3946e1207bc4b88e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd0552f046fb021a3c5277d469c16397"><td class="memItemLeft" align="right" valign="top"><a id="acd0552f046fb021a3c5277d469c16397"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>q_y_pool</b></td></tr>
-<tr class="separator:acd0552f046fb021a3c5277d469c16397"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d4e8dc405cb29f750c816f094dffe2a"><td class="memItemLeft" align="right" valign="top"><a id="a0d4e8dc405cb29f750c816f094dffe2a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>r_X_train</b></td></tr>
-<tr class="separator:a0d4e8dc405cb29f750c816f094dffe2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34ad65ed8a306438f9fede939344252c"><td class="memItemLeft" align="right" valign="top"><a id="a34ad65ed8a306438f9fede939344252c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>r_X_test</b></td></tr>
-<tr class="separator:a34ad65ed8a306438f9fede939344252c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e797b3a7e10afd3c26f68b07247a3c2"><td class="memItemLeft" align="right" valign="top"><a id="a1e797b3a7e10afd3c26f68b07247a3c2"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>r_y_train</b></td></tr>
-<tr class="separator:a1e797b3a7e10afd3c26f68b07247a3c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbc119cb00c71dcc298aca87fb5c8d6d"><td class="memItemLeft" align="right" valign="top"><a id="abbc119cb00c71dcc298aca87fb5c8d6d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>r_y_test</b></td></tr>
-<tr class="separator:abbc119cb00c71dcc298aca87fb5c8d6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68411a55268a2ae1f8b05cc286258d5a"><td class="memItemLeft" align="right" valign="top"><a id="a68411a55268a2ae1f8b05cc286258d5a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>r_X_val</b></td></tr>
-<tr class="separator:a68411a55268a2ae1f8b05cc286258d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98f57328633db20b9f802b13f9ac6163"><td class="memItemLeft" align="right" valign="top"><a id="a98f57328633db20b9f802b13f9ac6163"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>r_y_val</b></td></tr>
-<tr class="separator:a98f57328633db20b9f802b13f9ac6163"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2be12fff2417be4c770ed9a36c2d2c3f"><td class="memItemLeft" align="right" valign="top"><a id="a2be12fff2417be4c770ed9a36c2d2c3f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>r_X_pool</b></td></tr>
-<tr class="separator:a2be12fff2417be4c770ed9a36c2d2c3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeace70791dfba4dace8e79177962e416"><td class="memItemLeft" align="right" valign="top"><a id="aeace70791dfba4dace8e79177962e416"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>r_y_pool</b></td></tr>
-<tr class="separator:aeace70791dfba4dace8e79177962e416"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a993a12f2b359c45d6c9b187c8d3443a3"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><b>q_estimators_stacking</b></td></tr>
-<tr class="separator:a993a12f2b359c45d6c9b187c8d3443a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f410b23e2821d22c50af56ee4cbf7e9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>q_clf1</b></td></tr>
-<tr class="separator:a8f410b23e2821d22c50af56ee4cbf7e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc3ce44fca271a6d4df488208a22e922"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>q_clf2</b></td></tr>
-<tr class="separator:afc3ce44fca271a6d4df488208a22e922"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00451ecd1f156dd2c730568dd7ae9ca1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>q_clf3</b></td></tr>
-<tr class="separator:a00451ecd1f156dd2c730568dd7ae9ca1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87388d085b0fb6c7a6017418bbe70b0b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>q_estimator1</b></td></tr>
-<tr class="separator:a87388d085b0fb6c7a6017418bbe70b0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86fe3496098af1ac944b8451e15830ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>q_estimator2</b></td></tr>
-<tr class="separator:a86fe3496098af1ac944b8451e15830ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2e050c1381da3403ee94f1a201d379b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>q_estimator3</b></td></tr>
-<tr class="separator:ab2e050c1381da3403ee94f1a201d379b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a008f94b76c913cda274bb572dda7bb42"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>q_learner1</b></td></tr>
-<tr class="separator:a008f94b76c913cda274bb572dda7bb42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a308b3a34b0fb458c9bae70609075ef62"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>q_learner2</b></td></tr>
-<tr class="separator:a308b3a34b0fb458c9bae70609075ef62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab686288f16c354944bb7c914c28bb00e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>q_learner3</b></td></tr>
-<tr class="separator:ab686288f16c354944bb7c914c28bb00e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96cb332eee4f0a38fe71c308cfd05084"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><b>q_learner_list</b></td></tr>
-<tr class="separator:a96cb332eee4f0a38fe71c308cfd05084"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fd5f1f50c3fdb3189647d914d680941"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>q_learner</b></td></tr>
-<tr class="separator:a4fd5f1f50c3fdb3189647d914d680941"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb1c20825d94c33f9afbe966d2f2e5b5"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><b>r_estimators_stacking</b></td></tr>
-<tr class="separator:abb1c20825d94c33f9afbe966d2f2e5b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ae38dfec83f57a1129a61f8d1bbe5d3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>r_clf1</b></td></tr>
-<tr class="separator:a6ae38dfec83f57a1129a61f8d1bbe5d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd110dfb66fecf56864297479fe5a1e9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>r_clf2</b></td></tr>
-<tr class="separator:acd110dfb66fecf56864297479fe5a1e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93cec94275916d8e9d35c67c74a9ff48"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>r_clf3</b></td></tr>
-<tr class="separator:a93cec94275916d8e9d35c67c74a9ff48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87af08928c6d2bc1bddfcad00f645e15"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>r_estimator1</b></td></tr>
-<tr class="separator:a87af08928c6d2bc1bddfcad00f645e15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2c1e6cc1094256281948eea028519f7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>r_estimator2</b></td></tr>
-<tr class="separator:aa2c1e6cc1094256281948eea028519f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b562f0d36a257150394291d2e8005ba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>r_estimator3</b></td></tr>
-<tr class="separator:a8b562f0d36a257150394291d2e8005ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1899966f9d96dd180986e9e4b9f3861e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>r_learner1</b></td></tr>
-<tr class="separator:a1899966f9d96dd180986e9e4b9f3861e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4add61047fa17799fad02111c9aebcd3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>r_learner2</b></td></tr>
-<tr class="separator:a4add61047fa17799fad02111c9aebcd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab91c3aecc987eda7877a8acbfde77733"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>r_learner3</b></td></tr>
-<tr class="separator:ab91c3aecc987eda7877a8acbfde77733"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac901ef45525ee9cd76cb3fc0b6282402"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><b>r_learner_list</b></td></tr>
-<tr class="separator:ac901ef45525ee9cd76cb3fc0b6282402"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55d002e0c5fd94570999a145129b4e18"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>r_learner</b></td></tr>
-<tr class="separator:a55d002e0c5fd94570999a145129b4e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0bd3c705fe375692740c03a49f571a7"><td class="memItemLeft" align="right" valign="top"><a id="ac0bd3c705fe375692740c03a49f571a7"></a>
-list&#160;</td><td class="memItemRight" valign="bottom"><b>q_performance_history</b> = [f1_score(q_y_val, q_learner.predict(q_X_val), average='weighted')]</td></tr>
-<tr class="separator:ac0bd3c705fe375692740c03a49f571a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf9cb3034d3528929fd4fec5656fb979"><td class="memItemLeft" align="right" valign="top"><a id="abf9cb3034d3528929fd4fec5656fb979"></a>
-list&#160;</td><td class="memItemRight" valign="bottom"><b>r_performance_history</b> = [f1_score(r_y_val, r_learner.predict(r_X_val), average='weighted')]</td></tr>
-<tr class="separator:abf9cb3034d3528929fd4fec5656fb979"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae11dc5cf7c39783a3640c9f9a1e4108e"><td class="memItemLeft" align="right" valign="top"><a id="ae11dc5cf7c39783a3640c9f9a1e4108e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>n_queries</b> = 10</td></tr>
-<tr class="separator:ae11dc5cf7c39783a3640c9f9a1e4108e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affd110fc19999a327d590d9fdc356aff"><td class="memItemLeft" align="right" valign="top"><a id="affd110fc19999a327d590d9fdc356aff"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>n_instances</b> = 25</td></tr>
-<tr class="separator:affd110fc19999a327d590d9fdc356aff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a99e06d1c28410da1945346a6baea0c"><td class="memItemLeft" align="right" valign="top"><a id="a3a99e06d1c28410da1945346a6baea0c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>query_index</b></td></tr>
-<tr class="separator:a3a99e06d1c28410da1945346a6baea0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1db5c28dbff4d791e43911404ca75074"><td class="memItemLeft" align="right" valign="top"><a id="a1db5c28dbff4d791e43911404ca75074"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>X</b></td></tr>
-<tr class="separator:a1db5c28dbff4d791e43911404ca75074"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e35013188af239445a674dd391678cc"><td class="memItemLeft" align="right" valign="top"><a id="a3e35013188af239445a674dd391678cc"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>y</b></td></tr>
-<tr class="separator:a3e35013188af239445a674dd391678cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9fe505571ff7f5d855cad6f10d10e43"><td class="memItemLeft" align="right" valign="top"><a id="ab9fe505571ff7f5d855cad6f10d10e43"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>index</b></td></tr>
-<tr class="separator:ab9fe505571ff7f5d855cad6f10d10e43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39784d9171597aa057b22e8b99313375"><td class="memItemLeft" align="right" valign="top"><a id="a39784d9171597aa057b22e8b99313375"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>model_f1_score</b> = f1_score(q_y_val, q_learner.predict(q_X_val), average='weighted')</td></tr>
-<tr class="separator:a39784d9171597aa057b22e8b99313375"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae971f192cf8793d882230b03d290ab93"><td class="memItemLeft" align="right" valign="top"><a id="ae971f192cf8793d882230b03d290ab93"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>pp</b> = pprint.PrettyPrinter()</td></tr>
-<tr class="separator:ae971f192cf8793d882230b03d290ab93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6944ea8c708eb8ac38bb7184f1045099"><td class="memItemLeft" align="right" valign="top"><a id="a6944ea8c708eb8ac38bb7184f1045099"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>q_fig</b></td></tr>
-<tr class="separator:a6944ea8c708eb8ac38bb7184f1045099"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c57608dca59e62eef7563dbfca69f05"><td class="memItemLeft" align="right" valign="top"><a id="a7c57608dca59e62eef7563dbfca69f05"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>q_ax</b></td></tr>
-<tr class="separator:a7c57608dca59e62eef7563dbfca69f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f131b4ce8697ee1fd3a01e5f751f800"><td class="memItemLeft" align="right" valign="top">dictionary&#160;</td><td class="memItemRight" valign="bottom"><b>performance_history</b></td></tr>
+<tr class="separator:a2f131b4ce8697ee1fd3a01e5f751f800"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4f85c31e2cf708f16d50bb4e816005e"><td class="memItemLeft" align="right" valign="top"><a id="aa4f85c31e2cf708f16d50bb4e816005e"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>n_iterations</b> = 25</td></tr>
+<tr class="separator:aa4f85c31e2cf708f16d50bb4e816005e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2520d61fd017c2e02643d8cce5d6636"><td class="memItemLeft" align="right" valign="top"><a id="af2520d61fd017c2e02643d8cce5d6636"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>n_pool_instances</b> = 65</td></tr>
+<tr class="separator:af2520d61fd017c2e02643d8cce5d6636"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3adc6dbdced5adb6e1e00eacd50c0987"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><b>oracles_checkpoints</b></td></tr>
+<tr class="separator:a3adc6dbdced5adb6e1e00eacd50c0987"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31c6afff41d152c3e41156212acc9453"><td class="memItemLeft" align="right" valign="top"><a id="a31c6afff41d152c3e41156212acc9453"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>oracle_reliability_scores</b> = list()</td></tr>
+<tr class="separator:a31c6afff41d152c3e41156212acc9453"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48291fa339573c77c6dbfd33ea1d625b"><td class="memItemLeft" align="right" valign="top">dictionary&#160;</td><td class="memItemRight" valign="bottom"><b>performance_history_test_split</b></td></tr>
+<tr class="separator:a48291fa339573c77c6dbfd33ea1d625b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7a21b8f89151902a5166b1c6b13af27"><td class="memItemLeft" align="right" valign="top"><a id="ae7a21b8f89151902a5166b1c6b13af27"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>distilbert_emotion_classifier</b> = <a class="el" href="classproactive__learning_1_1EmotionClassifier.html">EmotionClassifier</a>()</td></tr>
+<tr class="separator:ae7a21b8f89151902a5166b1c6b13af27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afab78ccf2824d2c8c1a48add4c2142d3"><td class="memItemLeft" align="right" valign="top"><a id="afab78ccf2824d2c8c1a48add4c2142d3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>training_loss_</b></td></tr>
+<tr class="separator:afab78ccf2824d2c8c1a48add4c2142d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2cfd2b667b0eeaf39a442f71123e53f"><td class="memItemLeft" align="right" valign="top"><a id="ac2cfd2b667b0eeaf39a442f71123e53f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>oracle_selection_history_</b></td></tr>
+<tr class="separator:ac2cfd2b667b0eeaf39a442f71123e53f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a435174e70ded38f422188fbba1f16967"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>distilbert_active_learner</b></td></tr>
+<tr class="separator:a435174e70ded38f422188fbba1f16967"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae786fbd0dfe5efea2f0378c2ed358f8c"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><b>performance_metrics</b></td></tr>
+<tr class="separator:ae786fbd0dfe5efea2f0378c2ed358f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c2945334aef3e380fd0fb86f8a71d69"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>performance_metrics_test_split</b></td></tr>
+<tr class="separator:a9c2945334aef3e380fd0fb86f8a71d69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4aca2cdefa3d996d87a7181b88ffb461"><td class="memItemLeft" align="right" valign="top"><a id="a4aca2cdefa3d996d87a7181b88ffb461"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>performance_history_list</b> = list()</td></tr>
+<tr class="separator:a4aca2cdefa3d996d87a7181b88ffb461"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41760e9287665c0b8db219692eba4379"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>performance_history_df</b></td></tr>
+<tr class="separator:a41760e9287665c0b8db219692eba4379"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91c0d9811b058b7d2b18268ae78f2202"><td class="memItemLeft" align="right" valign="top">dictionary&#160;</td><td class="memItemRight" valign="bottom"><b>performance_history_lists</b></td></tr>
+<tr class="separator:a91c0d9811b058b7d2b18268ae78f2202"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc9bc34100bea3b1643bbd839fcb6da6"><td class="memItemLeft" align="right" valign="top"><a id="abc9bc34100bea3b1643bbd839fcb6da6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>fig</b></td></tr>
+<tr class="separator:abc9bc34100bea3b1643bbd839fcb6da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a224f15ba2593140ca3d6fd319c9ff86e"><td class="memItemLeft" align="right" valign="top"><a id="a224f15ba2593140ca3d6fd319c9ff86e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ax</b></td></tr>
+<tr class="separator:a224f15ba2593140ca3d6fd319c9ff86e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acae49ffed2209ee22e59c07df7e93540"><td class="memItemLeft" align="right" valign="top"><a id="acae49ffed2209ee22e59c07df7e93540"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>figsize</b></td></tr>
 <tr class="separator:acae49ffed2209ee22e59c07df7e93540"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8feddbd4ed13f82352207a085e64af59"><td class="memItemLeft" align="right" valign="top"><a id="a8feddbd4ed13f82352207a085e64af59"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>dpi</b></td></tr>
 <tr class="separator:a8feddbd4ed13f82352207a085e64af59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe93bc087029ed13efe3f9b18584d4c6"><td class="memItemLeft" align="right" valign="top"><a id="afe93bc087029ed13efe3f9b18584d4c6"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>s</b></td></tr>
-<tr class="separator:afe93bc087029ed13efe3f9b18584d4c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0858fd2da02c906462f760ae1911f86"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>line1</b></td></tr>
+<tr class="separator:ad0858fd2da02c906462f760ae1911f86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaf5e70ed2635e9fe2057304f0f90d48"><td class="memItemLeft" align="right" valign="top"><a id="aeaf5e70ed2635e9fe2057304f0f90d48"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>axis</b></td></tr>
+<tr class="separator:aeaf5e70ed2635e9fe2057304f0f90d48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae44c0a69fdeb6ec1d2a04369303909b5"><td class="memItemLeft" align="right" valign="top"><a id="ae44c0a69fdeb6ec1d2a04369303909b5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>labelcolor</b></td></tr>
+<tr class="separator:ae44c0a69fdeb6ec1d2a04369303909b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3f3b3ab2d092c45c0140b4030e1e2b4"><td class="memItemLeft" align="right" valign="top"><a id="ad3f3b3ab2d092c45c0140b4030e1e2b4"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ax2</b> = ax.twinx()</td></tr>
+<tr class="separator:ad3f3b3ab2d092c45c0140b4030e1e2b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cd074dd56e4736354e15978ec926c4c"><td class="memItemLeft" align="right" valign="top"><a id="a5cd074dd56e4736354e15978ec926c4c"></a>
+list&#160;</td><td class="memItemRight" valign="bottom"><b>colors</b> = ['indianred', 'slategray', 'blue', 'darkorange', 'black']</td></tr>
+<tr class="separator:a5cd074dd56e4736354e15978ec926c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99a2cb58c7cbbd8e0892ca49389f0c18"><td class="memItemLeft" align="right" valign="top"><a id="a99a2cb58c7cbbd8e0892ca49389f0c18"></a>
+list&#160;</td><td class="memItemRight" valign="bottom"><b>markers</b> = ['o', '^', 's', 'D', '1']</td></tr>
+<tr class="separator:a99a2cb58c7cbbd8e0892ca49389f0c18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa91430e0c9379d27ca6f396a2a8d8231"><td class="memItemLeft" align="right" valign="top"><a id="aa91430e0c9379d27ca6f396a2a8d8231"></a>
+list&#160;</td><td class="memItemRight" valign="bottom"><b>line_styles</b> = ['dashed', 'dotted', 'dashdot', (0, (5, 10)), 'solid']</td></tr>
+<tr class="separator:aa91430e0c9379d27ca6f396a2a8d8231"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a893aed9fc93a96a1a928564508d27ea9"><td class="memItemLeft" align="right" valign="top"><a id="a893aed9fc93a96a1a928564508d27ea9"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>index</b> = 0</td></tr>
+<tr class="separator:a893aed9fc93a96a1a928564508d27ea9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f684d200296271e27b0273ec5b6b537"><td class="memItemLeft" align="right" valign="top"><a id="a8f684d200296271e27b0273ec5b6b537"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>line2</b> = list()</td></tr>
+<tr class="separator:a8f684d200296271e27b0273ec5b6b537"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af510cc2e20814d735ae2c1ecfabb0be3"><td class="memItemLeft" align="right" valign="top"><a id="af510cc2e20814d735ae2c1ecfabb0be3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>rotation</b></td></tr>
+<tr class="separator:af510cc2e20814d735ae2c1ecfabb0be3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40b8b8dce7e2e273ca1e5155d8dcf849"><td class="memItemLeft" align="right" valign="top"><a id="a40b8b8dce7e2e273ca1e5155d8dcf849"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>labelpad</b></td></tr>
+<tr class="separator:a40b8b8dce7e2e273ca1e5155d8dcf849"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2474445c7428900068801a04a85c3067"><td class="memItemLeft" align="right" valign="top"><a id="a2474445c7428900068801a04a85c3067"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>lines</b> = list()</td></tr>
+<tr class="separator:a2474445c7428900068801a04a85c3067"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada775ab33a64261091a18db5d2bd49ec"><td class="memItemLeft" align="right" valign="top"><a id="ada775ab33a64261091a18db5d2bd49ec"></a>
+list&#160;</td><td class="memItemRight" valign="bottom"><b>labs</b> = [line.get_label() for line in lines]</td></tr>
+<tr class="separator:ada775ab33a64261091a18db5d2bd49ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af49ac0e0b13f403dcdae4f6ec98764b7"><td class="memItemLeft" align="right" valign="top"><a id="af49ac0e0b13f403dcdae4f6ec98764b7"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>bottom</b></td></tr>
 <tr class="separator:af49ac0e0b13f403dcdae4f6ec98764b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae875042fa4a328c0f537123f48a00e02"><td class="memItemLeft" align="right" valign="top"><a id="ae875042fa4a328c0f537123f48a00e02"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>top</b></td></tr>
 <tr class="separator:ae875042fa4a328c0f537123f48a00e02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa88204ba56764da856e64be0fd0740a6"><td class="memItemLeft" align="right" valign="top"><a id="aa88204ba56764da856e64be0fd0740a6"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>r_fig</b></td></tr>
-<tr class="separator:aa88204ba56764da856e64be0fd0740a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b6efd00fa30820662e52893572f9104"><td class="memItemLeft" align="right" valign="top"><a id="a5b6efd00fa30820662e52893572f9104"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>r_ax</b></td></tr>
-<tr class="separator:a5b6efd00fa30820662e52893572f9104"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af070fc8286fbaa989b937ef23f338c84"><td class="memItemLeft" align="right" valign="top"><a id="af070fc8286fbaa989b937ef23f338c84"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>bbox_inches</b></td></tr>
+<tr class="separator:af070fc8286fbaa989b937ef23f338c84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><pre class="fragment">What triggered that emotion? Emotion cause extraction in conversational discourse.
-Copyright (C) 2021  Rigved Rakshit
+<div class="textblock"><pre class="fragment">Proactive Learning with Emotion Detection in non-cooperative discourse
+Copyright (C) 2022  Rigved Rakshit
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published
@@ -280,91 +258,14 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.
 </pre> </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a81682b98a555074d9b8c8deffd9d1a07"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a81682b98a555074d9b8c8deffd9d1a07">&#9670;&nbsp;</a></span>calculate_utility_measure()</h2>
+<a id="ae94f68456ceccd2f601e9c3bb553741e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae94f68456ceccd2f601e9c3bb553741e">&#9670;&nbsp;</a></span>easy_to_difficult_query_strategy()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">def proactive_learning.calculate_utility_measure </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>classifier</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>instances</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<pre class="fragment">Utility function to help rank instances so that the proactive learner
-can pick the most information instances for the next training iteration.
-
-:param classifier: Machine learning model to use to pick the most
-                   informative instances for the next iteration of training.
-:param instances: The list of training instances in the pool from which the
-                  next most informative instances will be picked.
-
-:return: A function that can calculate the utility of each instance in the pool
-         and find the next most informative instances.
-</pre> 
-</div>
-</div>
-<a id="ab6835427b5e642d60154bb8712f9ea3c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6835427b5e642d60154bb8712f9ea3c">&#9670;&nbsp;</a></span>instance_selector()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">def proactive_learning.instance_selector </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>utility</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>n_instances</em> = <code>1</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<pre class="fragment">Function that selects the next most informative instances
-based on the utility function provided.
-
-:param utility: The utility function that calculate the amount
-                of information to be gained from all the instances
-                in the proactive learning training pool.
-:param n_instances: Number of informative instances to pick.
-
-:return: The most informative instances selected from the utility
-         function, based on the classifier and list of training pool
-         instances that were used to create the utility function.
-</pre> 
-</div>
-</div>
-<a id="a5b25cd1b9eb5161984e841bd1e3aa042"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b25cd1b9eb5161984e841bd1e3aa042">&#9670;&nbsp;</a></span>proactive_learner_query_strategy()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">def proactive_learning.proactive_learner_query_strategy </td>
+          <td class="memname">def proactive_learning.easy_to_difficult_query_strategy </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>classifier</em>, </td>
@@ -379,7 +280,7 @@ based on the utility function provided.
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>n_instances</em> = <code>1</code>&#160;</td>
+          <td class="paramname"><em>n_instances</em> = <code>65</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -388,354 +289,358 @@ based on the utility function provided.
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Custom proactive learning instance selection strategy. This query finds the utility
+<pre class="fragment">Custom Active Learning instance selection strategy. This query finds the utility
 of each instance in the pool and picks the most informative instances to use in the
-next iteration of training.
+next iteration of training. Instances that are easier to label are returned first.
 
-:param classifier: Machine learning model to use to pick the most
-                   informative instances for the next iteration of training.
+:param classifier: The Active Learner. Since this method automatically gets added to
+                   the Active Learner class, this parameter is the equivalent of
+                   'self' for this Active Learner method.
 :param instances: The list of training instances in the pool from which the
                   next most informative instances will be picked.
-:param n_instances: Number of informative instances to pick.
-:return:
+:param n_instances: Number of informative instances to pick. Default: 65
+
+:return: The indices of the instances from X chosen to be labelled
+         and the instances from X chosen to be labelled.
+</pre> 
+</div>
+</div>
+<a id="ada82e19e11b68fa368857ea9941c2a39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada82e19e11b68fa368857ea9941c2a39">&#9670;&nbsp;</a></span>random_query_strategy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def proactive_learning.random_query_strategy </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>classifier</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>instances</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>n_instances</em> = <code>65</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Custom Active Learning instance selection strategy. This query finds the utility
+of each instance in the pool and picks the most informative instances to use in the
+next iteration of training. Instances are randomly picked.
+
+:param classifier: The Active Learner. Since this method automatically gets added to
+                   the Active Learner class, this parameter is the equivalent of
+                   'self' for this Active Learner method.
+:param instances: The list of training instances in the pool from which the
+                  next most informative instances will be picked.
+:param n_instances: Number of informative instances to pick. Default: 65
+
+:return: The indices of the instances from X chosen to be labelled
+         and the instances from X chosen to be labelled.
+</pre> 
+</div>
+</div>
+<a id="a92f2a9a0a095d1d8319a403939076851"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92f2a9a0a095d1d8319a403939076851">&#9670;&nbsp;</a></span>run_active_learning_experiment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def proactive_learning.run_active_learning_experiment </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>learner</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>instances_x_pool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>instances_y_pool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>instances_x_val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>instances_y_val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>n_query_iterations</em> = <code>25</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>n_instances_pool</em> = <code>65</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Active Learning main loop. It picks instances to learn and iteratively trains
+the Active learner.
+
+:param learner: The Active Learner that'll be further trained.
+:param instances_x_pool: The pool of instances to use for further training.
+:param instances_y_pool: The pool of instance labels to use for further training.
+:param instances_x_val: The validation split used for evaluation.
+:param instances_y_val: The labels of the validation split used for evaluation.
+:param n_query_iterations: Number of queries for the Active Learning experiment. Default: 25
+:param n_instances_pool: Number of instances from the pool split to pick in each Active Learning iteration.
+                         Default: 65
+
+:return: Precision, Recall, F1 score, and Accuracy on the validation data split
+         after the current Active Learning iteration completes.
+</pre> 
+</div>
+</div>
+<a id="a8054ac5b6a29014dcbf127258b6b7a87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8054ac5b6a29014dcbf127258b6b7a87">&#9670;&nbsp;</a></span>run_proactive_learning_experiment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def proactive_learning.run_proactive_learning_experiment </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>learner</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>instances_x_pool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>instances_x_val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>instances_y_val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>n_query_iterations</em> = <code>25</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>n_instances_pool</em> = <code>65</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Proactive Learning main loop. It picks instances to learn and iteratively trains
+the Proactive learner.
+
+:param learner: The Proactive Learner that'll be further trained.
+:param instances_x_pool: The pool of instances to use for further training.
+:param instances_x_val: The validation split used for evaluation.
+:param instances_y_val: The labels of the validation split used for evaluation.
+:param n_query_iterations: Number of queries for the Active Learning experiment. Default: 25
+:param n_instances_pool: Number of instances from the pool split to pick in each Active Learning iteration.
+                         Default: 65
+
+:return: Hamming score on the validation data split for each Proactive Learning training iteration.
 </pre> 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="a8f410b23e2821d22c50af56ee4cbf7e9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f410b23e2821d22c50af56ee4cbf7e9">&#9670;&nbsp;</a></span>q_clf1</h2>
+<a id="a54d3e1aa244848be664d2d193552295b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54d3e1aa244848be664d2d193552295b">&#9670;&nbsp;</a></span>data</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">proactive_learning.q_clf1</td>
+          <td class="memname">proactive_learning.data</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  StackingClassifier(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    estimators=q_estimators_stacking,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    final_estimator=GradientBoostingClassifier(</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        subsample=0.75,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        min_samples_leaf=3,</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        n_iter_no_change=5</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    ),</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    cv=cv,</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    n_jobs=n_jobs,</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;)</div></div><!-- fragment -->
+<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  pd.DataFrame({</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;        <span class="stringliteral">&#39;text&#39;</span>: pd.concat(</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;            [</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;                raw_dataset[<span class="stringliteral">&#39;question&#39;</span>],</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;                raw_dataset[<span class="stringliteral">&#39;response&#39;</span>]</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;            ],</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;            ignore_index=<span class="keyword">True</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        ),</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <span class="stringliteral">&#39;emotion1&#39;</span>: pd.concat(</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;            [</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;                raw_dataset[<span class="stringliteral">&#39;q_emotion1&#39;</span>],</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;                raw_dataset[<span class="stringliteral">&#39;r_emotion1&#39;</span>]</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            ],</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            ignore_index=<span class="keyword">True</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        ),</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="stringliteral">&#39;emotion2&#39;</span>: pd.concat(</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            [</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                raw_dataset[<span class="stringliteral">&#39;q_emotion2&#39;</span>],</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                raw_dataset[<span class="stringliteral">&#39;r_emotion2&#39;</span>]</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            ],</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            ignore_index=<span class="keyword">True</span></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        )</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    })</div></div><!-- fragment -->
 </div>
 </div>
-<a id="afc3ce44fca271a6d4df488208a22e922"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc3ce44fca271a6d4df488208a22e922">&#9670;&nbsp;</a></span>q_clf2</h2>
+<a id="a435174e70ded38f422188fbba1f16967"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a435174e70ded38f422188fbba1f16967">&#9670;&nbsp;</a></span>distilbert_active_learner</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">proactive_learning.q_clf2</td>
+          <td class="memname">proactive_learning.distilbert_active_learner</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  StackingClassifier(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    estimators=q_estimators_stacking,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    final_estimator=GradientBoostingClassifier(</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        subsample=0.75,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        min_samples_leaf=3,</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        n_iter_no_change=5</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    ),</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    cv=cv,</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    n_jobs=n_jobs,</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;)</div></div><!-- fragment -->
+<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  ActiveLearner(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;        estimator=distilbert_emotion_classifier,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        query_strategy=easy_to_difficult_query_strategy,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        X_training=x_train,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        y_training=y_train</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    )</div></div><!-- fragment -->
 </div>
 </div>
-<a id="a00451ecd1f156dd2c730568dd7ae9ca1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00451ecd1f156dd2c730568dd7ae9ca1">&#9670;&nbsp;</a></span>q_clf3</h2>
+<a id="ad0858fd2da02c906462f760ae1911f86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0858fd2da02c906462f760ae1911f86">&#9670;&nbsp;</a></span>line1</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">proactive_learning.q_clf3</td>
+          <td class="memname">proactive_learning.line1</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  StackingClassifier(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    estimators=q_estimators_stacking,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    final_estimator=GradientBoostingClassifier(</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        subsample=0.75,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        min_samples_leaf=3,</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        n_iter_no_change=5</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    ),</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    cv=cv,</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    n_jobs=n_jobs,</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;)</div></div><!-- fragment -->
+<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  ax.plot(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;        distilbert_emotion_classifier.oracle_selection_history_,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        label=<span class="stringliteral">&#39;Oracle #&#39;</span>,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        color=<span class="stringliteral">&#39;green&#39;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    )</div></div><!-- fragment -->
 </div>
 </div>
-<a id="a87388d085b0fb6c7a6017418bbe70b0b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87388d085b0fb6c7a6017418bbe70b0b">&#9670;&nbsp;</a></span>q_estimator1</h2>
+<a id="a3adc6dbdced5adb6e1e00eacd50c0987"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3adc6dbdced5adb6e1e00eacd50c0987">&#9670;&nbsp;</a></span>oracles_checkpoints</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">proactive_learning.q_estimator1</td>
+          <td class="memname">list proactive_learning.oracles_checkpoints</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  make_pipeline_imb(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    TfidfVectorizer(</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        strip_accents=<span class="stringliteral">&#39;unicode&#39;</span>,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        stop_words=<span class="stringliteral">&#39;english&#39;</span>,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        ngram_range=(1, 1),</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        sublinear_tf=<span class="keyword">True</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    ),</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    SMOTE(</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        random_state=42,</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        n_jobs=n_jobs</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    ),</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    q_clf1,</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;)</div></div><!-- fragment -->
+<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  [</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;        <span class="stringliteral">&#39;models/distilbert/easy_to_difficult_sampling&#39;</span>,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        <span class="stringliteral">&#39;models/distilbert/entropy_sampling&#39;</span>,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        <span class="stringliteral">&#39;models/distilbert/margin_sampling&#39;</span>,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        <span class="stringliteral">&#39;models/distilbert/uncertainty_sampling&#39;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    ]</div></div><!-- fragment -->
 </div>
 </div>
-<a id="a86fe3496098af1ac944b8451e15830ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a86fe3496098af1ac944b8451e15830ed">&#9670;&nbsp;</a></span>q_estimator2</h2>
+<a id="a2f131b4ce8697ee1fd3a01e5f751f800"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f131b4ce8697ee1fd3a01e5f751f800">&#9670;&nbsp;</a></span>performance_history</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">proactive_learning.q_estimator2</td>
+          <td class="memname">dictionary proactive_learning.performance_history</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  make_pipeline_imb(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    TfidfVectorizer(</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        strip_accents=<span class="stringliteral">&#39;unicode&#39;</span>,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        stop_words=<span class="stringliteral">&#39;english&#39;</span>,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        ngram_range=(1, 2),</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        sublinear_tf=<span class="keyword">True</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    ),</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    SMOTE(</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        random_state=42,</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        n_jobs=n_jobs</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    ),</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    q_clf2,</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;)</div></div><!-- fragment -->
+<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  {</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;        <span class="stringliteral">&#39;Easy-to-Difficult Sampling&#39;</span>: dict(),</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        <span class="stringliteral">&#39;Easy-to-Difficult Sampling Loss&#39;</span>: list(),</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        <span class="stringliteral">&#39;Entropy Sampling&#39;</span>: dict(),</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        <span class="stringliteral">&#39;Entropy Sampling Loss&#39;</span>: list(),</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        <span class="stringliteral">&#39;Margin Sampling&#39;</span>: dict(),</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        <span class="stringliteral">&#39;Margin Sampling Loss&#39;</span>: list(),</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <span class="stringliteral">&#39;Uncertainty Sampling&#39;</span>: dict(),</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <span class="stringliteral">&#39;Uncertainty Sampling Loss&#39;</span>: list(),</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="stringliteral">&#39;Proactive Learning&#39;</span>: dict(),</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="stringliteral">&#39;Proactive Learning Loss&#39;</span>: list()</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    }</div></div><!-- fragment -->
 </div>
 </div>
-<a id="ab2e050c1381da3403ee94f1a201d379b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab2e050c1381da3403ee94f1a201d379b">&#9670;&nbsp;</a></span>q_estimator3</h2>
+<a id="a41760e9287665c0b8db219692eba4379"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41760e9287665c0b8db219692eba4379">&#9670;&nbsp;</a></span>performance_history_df</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">proactive_learning.q_estimator3</td>
+          <td class="memname">proactive_learning.performance_history_df</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  make_pipeline_imb(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    TfidfVectorizer(</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        strip_accents=<span class="stringliteral">&#39;unicode&#39;</span>,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        stop_words=<span class="stringliteral">&#39;english&#39;</span>,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        ngram_range=(1, 3),</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        sublinear_tf=<span class="keyword">True</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    ),</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    SMOTE(</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        random_state=42,</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        n_jobs=n_jobs</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    ),</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    q_clf3,</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;)</div></div><!-- fragment -->
+<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  pd.DataFrame(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;        {<span class="stringliteral">&#39;Loss&#39;</span>: np.array(performance_history_list)},</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        index=[f<span class="stringliteral">&#39;{key} Epoch {index + 1}&#39;</span> <span class="keywordflow">for</span> key <span class="keywordflow">in</span> sorted(performance_history.keys()) <span class="keywordflow">if</span> <span class="stringliteral">&#39; Loss&#39;</span> <span class="keywordflow">in</span> key <span class="keywordflow">for</span> index <span class="keywordflow">in</span> range(len(performance_history[key]))]</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    )</div></div><!-- fragment -->
 </div>
 </div>
-<a id="a993a12f2b359c45d6c9b187c8d3443a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a993a12f2b359c45d6c9b187c8d3443a3">&#9670;&nbsp;</a></span>q_estimators_stacking</h2>
+<a id="a91c0d9811b058b7d2b18268ae78f2202"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91c0d9811b058b7d2b18268ae78f2202">&#9670;&nbsp;</a></span>performance_history_lists</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">list proactive_learning.q_estimators_stacking</td>
+          <td class="memname">dictionary proactive_learning.performance_history_lists</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  [</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    (<span class="stringliteral">&#39;MultinomialNB&#39;</span>, MultinomialNB(</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        alpha=1e-05,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    )),</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    (<span class="stringliteral">&#39;KNeighborsClassifier&#39;</span>, KNeighborsClassifier(</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        n_neighbors=3,</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        metric=<span class="stringliteral">&#39;cosine&#39;</span>,</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        n_jobs=n_jobs,</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    )),</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    (<span class="stringliteral">&#39;RandomForestClassifier&#39;</span>, RandomForestClassifier(</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        n_estimators=125,</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        min_samples_leaf=3,</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        class_weight=<span class="stringliteral">&#39;balanced_subsample&#39;</span>,</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        n_jobs=n_jobs,</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    )),</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    (<span class="stringliteral">&#39;SGDClassifier&#39;</span>, SGDClassifier(</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        alpha=1e-05,</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        max_iter=500,</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        tol=1e-4,</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        learning_rate=<span class="stringliteral">&#39;adaptive&#39;</span>,</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        eta0=0.5,</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        early_stopping=<span class="keyword">True</span>,</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        class_weight=<span class="stringliteral">&#39;balanced&#39;</span>,</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    )),</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;]</div></div><!-- fragment -->
+<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  {</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;        <span class="stringliteral">&#39;Exact Match Ratio&#39;</span>: list(),</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        <span class="stringliteral">&#39;0/1 Loss&#39;</span>: list(),</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        <span class="stringliteral">&#39;Hamming Score&#39;</span>: list(),</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        <span class="stringliteral">&#39;Hamming Loss&#39;</span>: list(),</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        <span class="stringliteral">&#39;Precision&#39;</span>: list(),</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        <span class="stringliteral">&#39;Recall&#39;</span>: list(),</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <span class="stringliteral">&#39;F1-Measure&#39;</span>: list()</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    }</div></div><!-- fragment -->
 </div>
 </div>
-<a id="a4fd5f1f50c3fdb3189647d914d680941"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4fd5f1f50c3fdb3189647d914d680941">&#9670;&nbsp;</a></span>q_learner</h2>
+<a id="a48291fa339573c77c6dbfd33ea1d625b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48291fa339573c77c6dbfd33ea1d625b">&#9670;&nbsp;</a></span>performance_history_test_split</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">proactive_learning.q_learner</td>
+          <td class="memname">dictionary proactive_learning.performance_history_test_split</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  Committee(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    learner_list=q_learner_list,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    query_strategy=max_disagreement_sampling</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;)</div></div><!-- fragment -->
+<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  {</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;        <span class="stringliteral">&#39;Easy-to-Difficult Sampling&#39;</span>: dict(),</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        <span class="stringliteral">&#39;Entropy Sampling&#39;</span>: dict(),</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        <span class="stringliteral">&#39;Margin Sampling&#39;</span>: dict(),</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        <span class="stringliteral">&#39;Uncertainty Sampling&#39;</span>: dict(),</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        <span class="stringliteral">&#39;Proactive Learning&#39;</span>: dict()</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    }</div></div><!-- fragment -->
 </div>
 </div>
-<a id="a008f94b76c913cda274bb572dda7bb42"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a008f94b76c913cda274bb572dda7bb42">&#9670;&nbsp;</a></span>q_learner1</h2>
+<a id="ae786fbd0dfe5efea2f0378c2ed358f8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae786fbd0dfe5efea2f0378c2ed358f8c">&#9670;&nbsp;</a></span>performance_metrics</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">proactive_learning.q_learner1</td>
+          <td class="memname">def proactive_learning.performance_metrics</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  ActiveLearner(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    estimator=q_estimator1,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    query_strategy=proactive_learner_query_strategy,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    X_training=q_X_train, y_training=q_y_train,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;)</div></div><!-- fragment -->
+<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  run_active_learning_experiment(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;        learner=distilbert_active_learner,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        instances_x_pool=x_pool.copy(deep=<span class="keyword">True</span>),</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        instances_y_pool=y_pool.copy(deep=<span class="keyword">True</span>),</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        instances_x_val=x_val,</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        instances_y_val=y_val,</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        n_query_iterations=n_iterations,</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        n_instances_pool=n_pool_instances</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    )</div></div><!-- fragment -->
 </div>
 </div>
-<a id="a308b3a34b0fb458c9bae70609075ef62"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a308b3a34b0fb458c9bae70609075ef62">&#9670;&nbsp;</a></span>q_learner2</h2>
+<a id="a9c2945334aef3e380fd0fb86f8a71d69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c2945334aef3e380fd0fb86f8a71d69">&#9670;&nbsp;</a></span>performance_metrics_test_split</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">proactive_learning.q_learner2</td>
+          <td class="memname">proactive_learning.performance_metrics_test_split</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  ActiveLearner(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    estimator=q_estimator2,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    query_strategy=proactive_learner_query_strategy,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    X_training=q_X_train, y_training=q_y_train,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;)</div></div><!-- fragment -->
+<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  distilbert_emotion_classifier.score(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;        np.stack(</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;            np.array(y_test.tolist())</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        ).astype(np.int),</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        np.stack(</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;            mlb.transform(</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;                distilbert_emotion_classifier.predict(x_test)</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;            )</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        ).astype(np.int)</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    )</div></div><!-- fragment -->
 </div>
 </div>
-<a id="ab686288f16c354944bb7c914c28bb00e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab686288f16c354944bb7c914c28bb00e">&#9670;&nbsp;</a></span>q_learner3</h2>
+<a id="a72f64675da27ed16660495204e8ce402"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72f64675da27ed16660495204e8ce402">&#9670;&nbsp;</a></span>plutchik_emotions</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">proactive_learning.q_learner3</td>
+          <td class="memname">list proactive_learning.plutchik_emotions</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  ActiveLearner(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    estimator=q_estimator3,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    query_strategy=proactive_learner_query_strategy,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    X_training=q_X_train, y_training=q_y_train,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;)</div></div><!-- fragment -->
-</div>
-</div>
-<a id="a96cb332eee4f0a38fe71c308cfd05084"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a96cb332eee4f0a38fe71c308cfd05084">&#9670;&nbsp;</a></span>q_learner_list</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">list proactive_learning.q_learner_list</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  [</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    q_learner1,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    q_learner2,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    q_learner3</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;]</div></div><!-- fragment -->
-</div>
-</div>
-<a id="a6ae38dfec83f57a1129a61f8d1bbe5d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ae38dfec83f57a1129a61f8d1bbe5d3">&#9670;&nbsp;</a></span>r_clf1</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">proactive_learning.r_clf1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  StackingClassifier(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    estimators=r_estimators_stacking,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    final_estimator=GradientBoostingClassifier(</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        subsample=0.75,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        min_samples_leaf=3,</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        n_iter_no_change=5</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    ),</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    cv=cv,</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    n_jobs=n_jobs,</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;)</div></div><!-- fragment -->
-</div>
-</div>
-<a id="acd110dfb66fecf56864297479fe5a1e9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd110dfb66fecf56864297479fe5a1e9">&#9670;&nbsp;</a></span>r_clf2</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">proactive_learning.r_clf2</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  StackingClassifier(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    estimators=r_estimators_stacking,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    final_estimator=GradientBoostingClassifier(</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        subsample=0.75,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        min_samples_leaf=3,</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        n_iter_no_change=5</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    ),</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    cv=cv,</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    n_jobs=n_jobs,</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;)</div></div><!-- fragment -->
-</div>
-</div>
-<a id="a93cec94275916d8e9d35c67c74a9ff48"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93cec94275916d8e9d35c67c74a9ff48">&#9670;&nbsp;</a></span>r_clf3</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">proactive_learning.r_clf3</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  StackingClassifier(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    estimators=r_estimators_stacking,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    final_estimator=GradientBoostingClassifier(</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        subsample=0.75,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        min_samples_leaf=3,</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        n_iter_no_change=5</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    ),</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    cv=cv,</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    n_jobs=n_jobs,</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;)</div></div><!-- fragment -->
-</div>
-</div>
-<a id="a87af08928c6d2bc1bddfcad00f645e15"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87af08928c6d2bc1bddfcad00f645e15">&#9670;&nbsp;</a></span>r_estimator1</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">proactive_learning.r_estimator1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  Pipeline([</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    (<span class="stringliteral">&#39;tfidf&#39;</span>, TfidfVectorizer(</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        strip_accents=<span class="stringliteral">&#39;unicode&#39;</span>,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        stop_words=<span class="stringliteral">&#39;english&#39;</span>,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        ngram_range=(1, 1),</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        sublinear_tf=<span class="keyword">True</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    )),</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    (<span class="stringliteral">&#39;clf&#39;</span>, r_clf1),</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;])</div></div><!-- fragment -->
-</div>
-</div>
-<a id="aa2c1e6cc1094256281948eea028519f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2c1e6cc1094256281948eea028519f7">&#9670;&nbsp;</a></span>r_estimator2</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">proactive_learning.r_estimator2</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  Pipeline([</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    (<span class="stringliteral">&#39;tfidf&#39;</span>, TfidfVectorizer(</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        strip_accents=<span class="stringliteral">&#39;unicode&#39;</span>,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        stop_words=<span class="stringliteral">&#39;english&#39;</span>,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        ngram_range=(1, 2),</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        sublinear_tf=<span class="keyword">True</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    )),</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    (<span class="stringliteral">&#39;clf&#39;</span>, r_clf2),</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;])</div></div><!-- fragment -->
-</div>
-</div>
-<a id="a8b562f0d36a257150394291d2e8005ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b562f0d36a257150394291d2e8005ba">&#9670;&nbsp;</a></span>r_estimator3</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">proactive_learning.r_estimator3</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  Pipeline([</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    (<span class="stringliteral">&#39;tfidf&#39;</span>, TfidfVectorizer(</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        strip_accents=<span class="stringliteral">&#39;unicode&#39;</span>,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        stop_words=<span class="stringliteral">&#39;english&#39;</span>,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        ngram_range=(1, 3),</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        sublinear_tf=<span class="keyword">True</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    )),</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    (<span class="stringliteral">&#39;clf&#39;</span>, r_clf3),</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;])</div></div><!-- fragment -->
-</div>
-</div>
-<a id="abb1c20825d94c33f9afbe966d2f2e5b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb1c20825d94c33f9afbe966d2f2e5b5">&#9670;&nbsp;</a></span>r_estimators_stacking</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">list proactive_learning.r_estimators_stacking</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  [</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    (<span class="stringliteral">&#39;MultinomialNB&#39;</span>, MultinomialNB(</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        alpha=1e-05,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    )),</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    (<span class="stringliteral">&#39;KNeighborsClassifier&#39;</span>, KNeighborsClassifier(</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        n_neighbors=3,</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        metric=<span class="stringliteral">&#39;cosine&#39;</span>,</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        n_jobs=n_jobs,</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    )),</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    (<span class="stringliteral">&#39;RandomForestClassifier&#39;</span>, RandomForestClassifier(</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        n_estimators=125,</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        min_samples_leaf=3,</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        class_weight=<span class="stringliteral">&#39;balanced_subsample&#39;</span>,</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        n_jobs=n_jobs,</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    )),</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    (<span class="stringliteral">&#39;SGDClassifier&#39;</span>, SGDClassifier(</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        alpha=1e-05,</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        max_iter=500,</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        tol=1e-4,</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        learning_rate=<span class="stringliteral">&#39;adaptive&#39;</span>,</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        eta0=0.5,</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        early_stopping=<span class="keyword">True</span>,</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        class_weight=<span class="stringliteral">&#39;balanced&#39;</span>,</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    )),</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;]</div></div><!-- fragment -->
-</div>
-</div>
-<a id="a55d002e0c5fd94570999a145129b4e18"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a55d002e0c5fd94570999a145129b4e18">&#9670;&nbsp;</a></span>r_learner</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">proactive_learning.r_learner</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  Committee(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    learner_list=r_learner_list,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    query_strategy=max_disagreement_sampling</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;)</div></div><!-- fragment -->
-</div>
-</div>
-<a id="a1899966f9d96dd180986e9e4b9f3861e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1899966f9d96dd180986e9e4b9f3861e">&#9670;&nbsp;</a></span>r_learner1</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">proactive_learning.r_learner1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  ActiveLearner(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    estimator=r_estimator1,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    query_strategy=proactive_learner_query_strategy,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    X_training=r_X_train, y_training=r_y_train,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;)</div></div><!-- fragment -->
-</div>
-</div>
-<a id="a4add61047fa17799fad02111c9aebcd3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4add61047fa17799fad02111c9aebcd3">&#9670;&nbsp;</a></span>r_learner2</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">proactive_learning.r_learner2</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  ActiveLearner(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    estimator=r_estimator2,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    query_strategy=proactive_learner_query_strategy,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    X_training=r_X_train, y_training=r_y_train,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;)</div></div><!-- fragment -->
-</div>
-</div>
-<a id="ab91c3aecc987eda7877a8acbfde77733"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab91c3aecc987eda7877a8acbfde77733">&#9670;&nbsp;</a></span>r_learner3</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">proactive_learning.r_learner3</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  ActiveLearner(</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    estimator=r_estimator3,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    query_strategy=proactive_learner_query_strategy,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    X_training=r_X_train, y_training=r_y_train,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;)</div></div><!-- fragment -->
-</div>
-</div>
-<a id="ac901ef45525ee9cd76cb3fc0b6282402"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac901ef45525ee9cd76cb3fc0b6282402">&#9670;&nbsp;</a></span>r_learner_list</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">list proactive_learning.r_learner_list</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  [</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    r_learner1,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    r_learner2,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    r_learner3</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;]</div></div><!-- fragment -->
+<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  [</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;        <span class="stringliteral">&#39;Acceptance&#39;</span>,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        <span class="stringliteral">&#39;Aggressiveness&#39;</span>,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        <span class="stringliteral">&#39;Annoyance&#39;</span>,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        <span class="stringliteral">&#39;Apprehension&#39;</span>,</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        <span class="stringliteral">&#39;Awe&#39;</span>,</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        <span class="stringliteral">&#39;Boredom&#39;</span>,</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <span class="stringliteral">&#39;Contempt&#39;</span>,</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <span class="stringliteral">&#39;Disapproval&#39;</span>,</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="stringliteral">&#39;Distraction&#39;</span>,</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="stringliteral">&#39;Friendliness&#39;</span>,</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="stringliteral">&#39;Hostility&#39;</span>,</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="stringliteral">&#39;Interest&#39;</span>,</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="stringliteral">&#39;Optimism&#39;</span>,</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="stringliteral">&#39;Pensiveness&#39;</span>,</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="stringliteral">&#39;Remorse&#39;</span>,</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="stringliteral">&#39;Serenity&#39;</span>,</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="stringliteral">&#39;Submission&#39;</span>,</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    ]</div></div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

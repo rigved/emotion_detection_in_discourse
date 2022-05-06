@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['split_5fsentences',['split_sentences',['../namespacegenerate__toy__emotion__dataset.html#a9afcd51d75f7535b32415c0685038a3e',1,'generate_toy_emotion_dataset']]]
+  ['score',['score',['../classproactive__learning_1_1EmotionClassifier.html#afea65baaf69c64e1147b4d2f00af84df',1,'proactive_learning::EmotionClassifier']]]
 ];

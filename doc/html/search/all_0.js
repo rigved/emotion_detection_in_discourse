@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['_5f_5fgetitem_5f_5f',['__getitem__',['../classgenerate__toy__emotion__dataset_1_1DiscourseDataset.html#a29fa2e8e5162ae7898ef819fc66d2eac',1,'generate_toy_emotion_dataset.DiscourseDataset.__getitem__()'],['../classvisualize__sentence__embeddings_1_1DiscourseDataset.html#af7708f038540b86c5e580d84f7d25bc4',1,'visualize_sentence_embeddings.DiscourseDataset.__getitem__()']]],
-  ['_5f_5finit_5f_5f',['__init__',['../classgenerate__toy__emotion__dataset_1_1DiscourseDataset.html#a6702f6c1f1db040ac2c22bd90df7ae83',1,'generate_toy_emotion_dataset.DiscourseDataset.__init__()'],['../classvisualize__sentence__embeddings_1_1DiscourseDataset.html#a35b683b8eb0d527983d53c945cf4e405',1,'visualize_sentence_embeddings.DiscourseDataset.__init__()']]],
-  ['_5f_5flen_5f_5f',['__len__',['../classgenerate__toy__emotion__dataset_1_1DiscourseDataset.html#a50e2e2376a21cbd02848f90692f5d30a',1,'generate_toy_emotion_dataset.DiscourseDataset.__len__()'],['../classvisualize__sentence__embeddings_1_1DiscourseDataset.html#a70062f3cf6ea136ff22596721a6de423',1,'visualize_sentence_embeddings.DiscourseDataset.__len__()']]]
+  ['_5f_5fgetitem_5f_5f',['__getitem__',['../classproactive__learning_1_1EmotionsDataset.html#ace71ebec602c3c0fe1d31c3f7692c615',1,'proactive_learning::EmotionsDataset']]],
+  ['_5f_5finit_5f_5f',['__init__',['../classproactive__learning_1_1EmotionsDataset.html#a21d98ee1807752596f0ea5458996b3a8',1,'proactive_learning.EmotionsDataset.__init__()'],['../classproactive__learning_1_1EmotionClassifier.html#af3684b1fd605d7fbc53cb5892f1823da',1,'proactive_learning.EmotionClassifier.__init__()']]],
+  ['_5f_5flen_5f_5f',['__len__',['../classproactive__learning_1_1EmotionsDataset.html#a7ff2003ef3995aee4baed881175aeb00',1,'proactive_learning::EmotionsDataset']]]
 ];
