@@ -22,7 +22,7 @@ The data is available in the `data` folder. It contains the original
 20 U.S. Congressional Hearings data from Ferracane et al. (2021) as the file
 `expanded_with_features_annotated_questions_responses_gold.csv`. The emotion
 labels from the current annotations is saved in the file
-`emotion_data_annotated_by_humans.csv`.
+`emotion_annotated_data.csv`.
 
 
 # Run
