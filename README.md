@@ -1,5 +1,6 @@
-# Introduction
-Emotion detection in U.S. Congressional Hearings.
+# Introduction: Emotion detection in U.S. Congressional Hearings
+
+In this project, we annotate an existing dataset of U. S. Congressional Hearings (Ferracane et al., 2021) with emotions and the phrases where these emotions are indicated. We analyse these annotations to find meaningful patterns. Furthermore, we build a classifier solution to predict these emotions labels and show that Proactive Learning (Donmez and Carbonell, 2008; Ambati and Carbonell, 2009) can reduce training costs for this classifier.
 
 
 # Installation
