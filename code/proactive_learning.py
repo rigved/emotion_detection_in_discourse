@@ -138,10 +138,10 @@ class EmotionClassifier(BaseEstimator, ClassifierMixin):
                 'Submission',
             ],
             oracles=[
-                'models/easy_to_difficult_sampling',
-                'models/entropy_sampling',
-                'models/margin_sampling',
-                'models/uncertainty_sampling'
+                'models/distilbert/easy_to_difficult_sampling',
+                'models/distilbert/entropy_sampling',
+                'models/distilbert/margin_sampling',
+                'models/distilbert/uncertainty_sampling'
             ],
             reliability_scores=[
                 0.0,
@@ -149,7 +149,7 @@ class EmotionClassifier(BaseEstimator, ClassifierMixin):
                 0.0,
                 0.0
             ],
-            proactive_learning_model_checkpoint='models/proactive_learning_sampling',
+            proactive_learning_model_checkpoint='models/distilbert/proactive_learning',
             tokenizer=AutoTokenizer.from_pretrained('distilbert-base-uncased'),
             model=AutoModelForSequenceClassification.from_pretrained(
                 'distilbert-base-uncased',
@@ -160,7 +160,7 @@ class EmotionClassifier(BaseEstimator, ClassifierMixin):
             batch_size=8,
             lr=5e-5,
             num_warmup_steps=0,
-            n_iter=25,
+            n_iter=5,
             verbose=True
     ):
         """
@@ -184,7 +184,7 @@ class EmotionClassifier(BaseEstimator, ClassifierMixin):
                            Default: 8 (This batch size fits into the memory offered by an NVIDIA P4 GPU.)
         :param lr: Learning rate for the transformer head's optimizer. Default: 5e-5
         :param num_warmup_steps: Number of warmup steps for the learning rate scheduler during training.
-        :param n_iter: Number of epochs for the training. Default: 25
+        :param n_iter: Number of epochs for the training. Default: 3
         :param verbose: Output training progress and training loss if this is True.
         """
         self.plutchik_emotions = plutchik_emotions
@@ -406,32 +406,80 @@ class EmotionClassifier(BaseEstimator, ClassifierMixin):
 
         return padded_data
 
-    def score(self, y_true, y_pred, **kwargs):
+    def score(self, y_true, y_predictions, **kwargs):
         """
-        Calculate the Hamming score (also called the Subset Accuracy) of the predictions against the gold standard.
+        Calculate metrics for multilabel classification. Metrics calculated are:
+            * Exact Match Ratio
+            * 0/1 Loss
+            * Hamming score (Subset Accuracy)
+            * Hamming Loss
+            * Precision
+            * Recall
+            * F1-Measure
+        Since the sklearn versions don't work with this dataset, these metrics are manually calculated.
 
-        :param y_pred: The predictions from the model.
+        :param y_predictions: The predictions from the model.
         :param y_true: The gold standard labels.
         :param kwargs: Keyword arguments for the "ClassifierMinix.score" method.
                        By default, it can accept optional array-like sample
                        weights of shape (n_samples,). Default: None
                        This is currently not used in this method.
 
-        :return: Hamming score.
+        :return: Metrics.
         """
-        # The Hamming score for each instance is defined as the proportion of the predicted correct labels
-        # to the total number of labels for that instance.
-        hamming_score = ((y_pred & y_true).sum(axis=1) / (y_pred | y_true).sum(axis=1)).mean()
-        if np.isinf(hamming_score):
-            hamming_score = np.array(1.0)
+        # Definition of the various metrics:
+        #   * The Exact Match Ratio is the ratio of completely accurate (ignoring partially accurate) predictions.
+        #   * 0/1 Loss: It is the proportion of instances whose predicted value is different from their actual value.
+        #   * The Hamming score for each instance is defined as the proportion of the predicted correct labels
+        #     to the total number of labels for that instance.
+        #   * Hamming Loss is the number of times on average that the relevance of an instance to a class label is
+        #     incorrectly predicted.
+        #   * Precision is the proportion of correctly predicted labels to the total number of labels predicted,
+        #     averaged over all instances.
+        #   * Recall is the proportion of correctly predicted labels to the total number of true labels, averaged over
+        #     all instances.
+        #   * F1-Measure is the harmonic mean of Precision and Recall.
 
-        return hamming_score.item(0)
+        # Calculate metrics
+        metrics = {
+            'Exact Match Ratio': np.all(y_true == y_predictions, axis=1).mean(),
+            '0/1 Loss': np.any(y_true != y_predictions, axis=1).mean(),
+            'Hamming Score': ((y_true.astype(np.int64) & y_predictions.astype(np.int64)).sum(axis=1) / (y_true.astype(np.int64) | y_predictions.astype(np.int64)).sum(axis=1)).mean(),
+            'Hamming Loss': ((np.size((y_true.astype(np.int64) == y_predictions.astype(np.int64)), axis=1) - np.count_nonzero((y_true.astype(np.int64) == y_predictions.astype(np.int64)), axis=1)) / (y_true.shape[0] * y_true.shape[1])).mean(),
+            'Precision': ((y_true.astype(np.int64) & y_predictions.astype(np.int64)).sum(axis=1) / y_predictions.sum(axis=1)).mean(),
+            'Recall': ((y_true.astype(np.int64) & y_predictions.astype(np.int64)).sum(axis=1) / y_true.sum(axis=1)).mean(),
+            'F1-Measure': 2 * ((y_true.astype(np.int64) & y_predictions.astype(np.int64)).sum(axis=1) / (y_true.sum(axis=1) + y_predictions.sum(axis=1))).mean()
+        }
+
+        # Account for np.nan
+        if metrics['Exact Match Ratio'] != metrics['Exact Match Ratio']:
+            metrics['Exact Match Ratio'] = 0.0
+
+        if metrics['0/1 Loss'] != metrics['0/1 Loss']:
+            metrics['0/1 Loss'] = 1.0
+
+        if metrics['Hamming Score'] != metrics['Hamming Score']:
+            metrics['Hamming Score'] = 0.0
+
+        if metrics['Hamming Loss'] != metrics['Hamming Loss']:
+            metrics['Hamming Loss'] = 1.0
+
+        if metrics['Precision'] != metrics['Precision']:
+            metrics['Precision'] = 0.0
+
+        if metrics['Recall'] != metrics['Recall']:
+            metrics['Recall'] = 0.0
+
+        if metrics['F1-Measure'] != metrics['F1-Measure']:
+            metrics['F1-Measure'] = 0.0
+
+        return metrics
 
 
 def easy_to_difficult_query_strategy(
         classifier,
         instances,
-        n_instances=100,
+        n_instances=65,
 ):
     """
     Custom Active Learning instance selection strategy. This query finds the utility
@@ -443,7 +491,7 @@ def easy_to_difficult_query_strategy(
                        'self' for this Active Learner method.
     :param instances: The list of training instances in the pool from which the
                       next most informative instances will be picked.
-    :param n_instances: Number of informative instances to pick.
+    :param n_instances: Number of informative instances to pick. Default: 65
 
     :return: The indices of the instances from X chosen to be labelled
              and the instances from X chosen to be labelled.
@@ -455,13 +503,37 @@ def easy_to_difficult_query_strategy(
     return sorted_probability_indexes[-n_instances:]
 
 
+def random_query_strategy(
+        classifier,
+        instances,
+        n_instances=65,
+):
+    """
+    Custom Active Learning instance selection strategy. This query finds the utility
+    of each instance in the pool and picks the most informative instances to use in the
+    next iteration of training. Instances are randomly picked.
+
+    :param classifier: The Active Learner. Since this method automatically gets added to
+                       the Active Learner class, this parameter is the equivalent of
+                       'self' for this Active Learner method.
+    :param instances: The list of training instances in the pool from which the
+                      next most informative instances will be picked.
+    :param n_instances: Number of informative instances to pick. Default: 65
+
+    :return: The indices of the instances from X chosen to be labelled
+             and the instances from X chosen to be labelled.
+    """
+    # Randomly pick the next set of informative instances for the training from the given pool split
+    return np.random.choice(range(len(instances)), n_instances)
+
+
 def run_proactive_learning_experiment(
         learner,
         instances_x_pool,
         instances_x_val,
         instances_y_val,
         n_query_iterations=25,
-        n_instances_pool=100
+        n_instances_pool=65
 ):
     """
     Proactive Learning main loop. It picks instances to learn and iteratively trains
@@ -471,9 +543,9 @@ def run_proactive_learning_experiment(
     :param instances_x_pool: The pool of instances to use for further training.
     :param instances_x_val: The validation split used for evaluation.
     :param instances_y_val: The labels of the validation split used for evaluation.
-    :param n_query_iterations: Number of queries for the Active Learning experiment.
-    :param n_instances_pool: Number of instances from the pool split to pick
-                             in each Active Learning iteration.
+    :param n_query_iterations: Number of queries for the Active Learning experiment. Default: 25
+    :param n_instances_pool: Number of instances from the pool split to pick in each Active Learning iteration.
+                             Default: 65
 
     :return: Hamming score on the validation data split for each Proactive Learning training iteration.
     """
@@ -482,7 +554,15 @@ def run_proactive_learning_experiment(
     multilabel_binarizer.fit([learner.estimator.plutchik_emotions])
 
     # Store the performance history
-    learner_performance_history = list()
+    learner_performance_history = {
+        'Exact Match Ratio': list(),
+        '0/1 Loss': list(),
+        'Hamming Score': list(),
+        'Hamming Loss': list(),
+        'Precision': list(),
+        'Recall': list(),
+        'F1-Measure': list()
+    }
 
     # Use the least reliable available oracle at the start, in order to save costs
     current_best_oracle_index = 0
@@ -512,13 +592,14 @@ def run_proactive_learning_experiment(
 
         # Re-load the Proactive Learning model
         del learner.estimator.model
-        learner.estimator.model = AutoModelForSequenceClassification.from_pretrained(learner.estimator.proactive_learning_model_checkpoint)
+        learner.estimator.model = AutoModelForSequenceClassification.from_pretrained(learner.estimator.proactive_learning_model_checkpoint )
         learner.estimator.model.to(learner.estimator.device)
 
         # Fine-tune the Proactive Learner using the selected instance(s)
         learner.teach(
             X=instances_x_pool.iloc[query_indexes],
-            y=y_pool_pred
+            y=y_pool_pred,
+            only_new=True
         )
 
         # Store the performance of the learner after the new learning phase.
@@ -535,21 +616,30 @@ def run_proactive_learning_experiment(
                 )
             ).astype(np.int)
         )
-        learner_performance_history.append(performance)
+
+        for metric_key in performance.keys():
+            learner_performance_history[metric_key].append(performance[metric_key])
 
         # Pick the next oracle such that the cost is minimized using a greedy approach
-        if performance > learner.estimator.reliability_scores[current_best_oracle]:
+        if performance['F1-Measure'] > learner.estimator.reliability_scores[current_best_oracle]:
             # If the current model performed better than the oracle, then choose a less
             # reliable oracle next time to save costs
             if current_best_oracle_index != 0:
                 current_best_oracle_index -= 1
-        elif performance < learner.estimator.reliability_scores[current_best_oracle]:
+        elif performance['F1-Measure'] < learner.estimator.reliability_scores[current_best_oracle]:
             # If the current model performed worse than the oracle, then choose a more
             # reliable oracle next time
             if current_best_oracle_index != (learner.estimator.reliability_scores.shape[0] - 1):
                 current_best_oracle_index += 1
 
         learner.estimator.oracle_selection_history_.append(current_best_oracle_index)
+
+        if learner.estimator.verbose:
+            print(f'Learner Performance at {index + 1}: {learner_performance_history["F1-Measure"][-1]}')
+
+        # Sampling without replacement
+        instances_x_pool.drop(query_indexes, inplace=True)
+        instances_x_pool.reset_index(drop=True, inplace=True)
 
     return learner_performance_history
 
@@ -561,7 +651,7 @@ def run_active_learning_experiment(
         instances_x_val,
         instances_y_val,
         n_query_iterations=25,
-        n_instances_pool=100
+        n_instances_pool=65
 ):
     """
     Active Learning main loop. It picks instances to learn and iteratively trains
@@ -572,9 +662,9 @@ def run_active_learning_experiment(
     :param instances_y_pool: The pool of instance labels to use for further training.
     :param instances_x_val: The validation split used for evaluation.
     :param instances_y_val: The labels of the validation split used for evaluation.
-    :param n_query_iterations: Number of queries for the Active Learning experiment.
-    :param n_instances_pool: Number of instances from the pool split to pick
-                             in each Active Learning iteration.
+    :param n_query_iterations: Number of queries for the Active Learning experiment. Default: 25
+    :param n_instances_pool: Number of instances from the pool split to pick in each Active Learning iteration.
+                             Default: 65
 
     :return: Precision, Recall, F1 score, and Accuracy on the validation data split
              after the current Active Learning iteration completes.
@@ -584,7 +674,15 @@ def run_active_learning_experiment(
     multilabel_binarizer.fit([learner.estimator.plutchik_emotions])
 
     # Store the performance history
-    learner_performance_history = list()
+    learner_performance_history = {
+        'Exact Match Ratio': list(),
+        '0/1 Loss': list(),
+        'Hamming Score': list(),
+        'Hamming Loss': list(),
+        'Precision': list(),
+        'Recall': list(),
+        'F1-Measure': list()
+    }
 
     for index in range(n_query_iterations):
         if learner.estimator.verbose:
@@ -599,23 +697,34 @@ def run_active_learning_experiment(
         # Fine-tune the Active Learner using the selected instance(s)
         learner.teach(
             X=instances_x_pool.iloc[query_indexes],
-            y=instances_y_pool.iloc[query_indexes]
+            y=instances_y_pool.iloc[query_indexes],
+            only_new=True
         )
 
         # Store the performance of the learner after the new learning phase.
         # Use the validation dataset for this purpose.
-        learner_performance_history.append(
-            learner.score(
-                np.stack(
-                    np.array(instances_y_val.tolist())
-                ).astype(np.int),
-                np.stack(
-                    multilabel_binarizer.transform(
-                        learner.predict(instances_x_val)
-                    )
-                ).astype(np.int)
-            )
+        performance = learner.score(
+            np.stack(
+                np.array(instances_y_val.tolist())
+            ).astype(np.int),
+            np.stack(
+                multilabel_binarizer.transform(
+                    learner.predict(instances_x_val)
+                )
+            ).astype(np.int)
         )
+
+        for metric_key in performance.keys():
+            learner_performance_history[metric_key].append(performance[metric_key])
+
+        if learner.estimator.verbose:
+            print(f'Learner Performance at {index + 1}: {learner_performance_history["F1-Measure"][-1]}')
+
+        # Sampling without replacement
+        instances_x_pool.drop(query_indexes, inplace=True)
+        instances_y_pool.drop(query_indexes, inplace=True)
+        instances_x_pool.reset_index(drop=True, inplace=True)
+        instances_y_pool.reset_index(drop=True, inplace=True)
 
     return learner_performance_history
 
@@ -649,7 +758,7 @@ if __name__ == '__main__':
     np.random.seed(seed)
 
     # Load the dataset
-    raw_dataset = pd.read_csv('../data/emotion_data_annotated_by_humans.csv')
+    raw_dataset = pd.read_csv('../data/emotion_annotated_data.csv')
 
     # Extract the required features and split into train, pool, validation, and test datasets
     data = pd.DataFrame({
@@ -718,74 +827,114 @@ if __name__ == '__main__':
     x_train, x_pool, y_train, y_pool = train_test_split(
         x_train,
         y_train,
-        train_size=0.5,
+        train_size=0.1,
         random_state=42
     )
 
-    # Cannot reset_index inplace on a Series to create a DataFrame
-    x_train = x_train.reset_index(drop=True)
-    y_train = y_train.reset_index(drop=True)
-    x_pool = x_pool.reset_index(drop=True)
-    y_pool = y_pool.reset_index(drop=True)
-    x_val = x_val.reset_index(drop=True)
-    y_val = y_val.reset_index(drop=True)
-    x_test = x_test.reset_index(drop=True)
-    y_test = y_test.reset_index(drop=True)
+    x_train.reset_index(drop=True, inplace=True)
+    y_train.reset_index(drop=True, inplace=True)
+    x_pool.reset_index(drop=True, inplace=True)
+    y_pool.reset_index(drop=True, inplace=True)
+    x_val.reset_index(drop=True, inplace=True)
+    y_val.reset_index(drop=True, inplace=True)
+    x_test.reset_index(drop=True, inplace=True)
+    y_test.reset_index(drop=True, inplace=True)
 
     # We restrict to using a single GPU so that the SLURM job running this experiment gets picked up faster.
     # We will test each Active Learning and Proactive Learning strategy one-by-one on the same dataset splits
     # and then compare their performance.
     # Store the performance of the oracles with each iteration of Active Learning
     performance_history = {
-        'Easy-to-Difficult Sampling': list(),
+        'Easy-to-Difficult Sampling': dict(),
         'Easy-to-Difficult Sampling Loss': list(),
-        'Entropy Sampling': list(),
+        'Entropy Sampling': dict(),
         'Entropy Sampling Loss': list(),
-        'Margin Sampling': list(),
+        'Margin Sampling': dict(),
         'Margin Sampling Loss': list(),
-        'Uncertainty Sampling': list(),
-        'Uncertainty Sampling Loss': list()
+        'Uncertainty Sampling': dict(),
+        'Uncertainty Sampling Loss': list(),
+        'Proactive Learning': dict(),
+        'Proactive Learning Loss': list()
     }
 
     # Proactive Learning parameters for the number of instances to pick for each query
     # and the number of total queries to perform.
     n_iterations = 25
-    n_pool_instances = 100
-    bart_oracles = [
-        'models/easy_to_difficult_sampling',
-        'models/entropy_sampling',
-        'models/margin_sampling',
-        'models/uncertainty_sampling'
+    n_pool_instances = 65
+    oracles_checkpoints = [
+        'models/distilbert/easy_to_difficult_sampling',
+        'models/distilbert/entropy_sampling',
+        'models/distilbert/margin_sampling',
+        'models/distilbert/uncertainty_sampling'
     ]
+    oracle_reliability_scores = list()
+    performance_history_test_split = {
+        'Easy-to-Difficult Sampling': dict(),
+        'Entropy Sampling': dict(),
+        'Margin Sampling': dict(),
+        'Uncertainty Sampling': dict(),
+        'Proactive Learning': dict()
+    }
 
     # Clear GPU memory
     torch.cuda.empty_cache()
 
     # Strategy 1: Easy-to-Difficult Sampling
+    print('Current Active Learning technique: Easy-to-Difficult Sampling')
+
     distilbert_emotion_classifier = EmotionClassifier()
+    distilbert_emotion_classifier.training_loss_ = list()
+    distilbert_emotion_classifier.oracle_selection_history_ = list()
     distilbert_active_learner = ActiveLearner(
         estimator=distilbert_emotion_classifier,
         query_strategy=easy_to_difficult_query_strategy,
         X_training=x_train,
         y_training=y_train
     )
-    performance_history['Easy-to-Difficult Sampling'].extend(run_active_learning_experiment(
+
+    performance_metrics = run_active_learning_experiment(
         learner=distilbert_active_learner,
-        instances_x_pool=x_pool,
-        instances_y_pool=y_pool,
+        instances_x_pool=x_pool.copy(deep=True),
+        instances_y_pool=y_pool.copy(deep=True),
         instances_x_val=x_val,
         instances_y_val=y_val,
         n_query_iterations=n_iterations,
         n_instances_pool=n_pool_instances
-    ))
+    )
+
+    for metric_key in performance_metrics.keys():
+        performance_history['Easy-to-Difficult Sampling'][metric_key] = performance_metrics[metric_key]
+
     performance_history['Easy-to-Difficult Sampling Loss'].extend(distilbert_emotion_classifier.training_loss_)
-    distilbert_emotion_classifier.model.save_pretrained(bart_oracles[0])
+    oracle_reliability_scores.append(performance_history['Easy-to-Difficult Sampling']['F1-Measure'][-1])
+
+    performance_metrics_test_split = distilbert_emotion_classifier.score(
+        np.stack(
+            np.array(y_test.tolist())
+        ).astype(np.int),
+        np.stack(
+            mlb.transform(
+                distilbert_emotion_classifier.predict(x_test)
+            )
+        ).astype(np.int)
+    )
+
+    for metric_key in performance_metrics_test_split.keys():
+        performance_history_test_split['Easy-to-Difficult Sampling'][metric_key] = performance_metrics_test_split[metric_key]
+
+    print('Performance History:')
+    print(performance_history)
+    print('Performance History on Test Dataset:')
+    print(performance_history_test_split)
 
     # Clear GPU memory
+    distilbert_emotion_classifier.model.save_pretrained(oracles_checkpoints[0])
     del distilbert_emotion_classifier.model
     torch.cuda.empty_cache()
 
     # Strategy 2: Entropy Sampling
+    print('Current Active Learning technique: Entropy Sampling')
+
     distilbert_emotion_classifier = EmotionClassifier()
     distilbert_active_learner = ActiveLearner(
         estimator=distilbert_emotion_classifier,
@@ -793,23 +942,50 @@ if __name__ == '__main__':
         X_training=x_train,
         y_training=y_train
     )
-    performance_history['Entropy Sampling'].extend(run_active_learning_experiment(
+
+    performance_metrics = run_active_learning_experiment(
         learner=distilbert_active_learner,
-        instances_x_pool=x_pool,
-        instances_y_pool=y_pool,
+        instances_x_pool=x_pool.copy(deep=True),
+        instances_y_pool=y_pool.copy(deep=True),
         instances_x_val=x_val,
         instances_y_val=y_val,
         n_query_iterations=n_iterations,
         n_instances_pool=n_pool_instances
-    ))
+    )
+
+    for metric_key in performance_metrics.keys():
+        performance_history['Entropy Sampling'][metric_key] = performance_metrics[metric_key]
+
     performance_history['Entropy Sampling Loss'].extend(distilbert_emotion_classifier.training_loss_)
-    distilbert_emotion_classifier.model.save_pretrained(bart_oracles[1])
+    oracle_reliability_scores.append(performance_history['Entropy Sampling']['F1-Measure'][-1])
+
+    performance_metrics_test_split = distilbert_emotion_classifier.score(
+        np.stack(
+            np.array(y_test.tolist())
+        ).astype(np.int),
+        np.stack(
+            mlb.transform(
+                distilbert_emotion_classifier.predict(x_test)
+            )
+        ).astype(np.int)
+    )
+
+    for metric_key in performance_metrics_test_split.keys():
+        performance_history_test_split['Entropy Sampling'][metric_key] = performance_metrics_test_split[metric_key]
+
+    print('Performance History:')
+    print(performance_history)
+    print('Performance History on Test Dataset:')
+    print(performance_history_test_split)
 
     # Clear GPU memory
+    distilbert_emotion_classifier.model.save_pretrained(oracles_checkpoints[1])
     del distilbert_emotion_classifier.model
     torch.cuda.empty_cache()
 
     # Strategy 3: Margin Sampling
+    print('Current Active Learning technique: Margin Sampling')
+
     distilbert_emotion_classifier = EmotionClassifier()
     distilbert_active_learner = ActiveLearner(
         estimator=distilbert_emotion_classifier,
@@ -817,23 +993,50 @@ if __name__ == '__main__':
         X_training=x_train,
         y_training=y_train
     )
-    performance_history['Margin Sampling'].extend(run_active_learning_experiment(
+
+    performance_metrics = run_active_learning_experiment(
         learner=distilbert_active_learner,
-        instances_x_pool=x_pool,
-        instances_y_pool=y_pool,
+        instances_x_pool=x_pool.copy(deep=True),
+        instances_y_pool=y_pool.copy(deep=True),
         instances_x_val=x_val,
         instances_y_val=y_val,
         n_query_iterations=n_iterations,
         n_instances_pool=n_pool_instances
-    ))
+    )
+
+    for metric_key in performance_metrics.keys():
+        performance_history['Margin Sampling'][metric_key] = performance_metrics[metric_key]
+
     performance_history['Margin Sampling Loss'].extend(distilbert_emotion_classifier.training_loss_)
-    distilbert_emotion_classifier.model.save_pretrained(bart_oracles[2])
+    oracle_reliability_scores.append(performance_history['Margin Sampling']['F1-Measure'][-1])
+
+    performance_metrics_test_split = distilbert_emotion_classifier.score(
+        np.stack(
+            np.array(y_test.tolist())
+        ).astype(np.int),
+        np.stack(
+            mlb.transform(
+                distilbert_emotion_classifier.predict(x_test)
+            )
+        ).astype(np.int)
+    )
+
+    for metric_key in performance_metrics_test_split.keys():
+        performance_history_test_split['Margin Sampling'][metric_key] = performance_metrics_test_split[metric_key]
+
+    print('Performance History:')
+    print(performance_history)
+    print('Performance History on Test Dataset:')
+    print(performance_history_test_split)
 
     # Clear GPU memory
+    distilbert_emotion_classifier.model.save_pretrained(oracles_checkpoints[2])
     del distilbert_emotion_classifier.model
     torch.cuda.empty_cache()
 
     # Strategy 4: Uncertainty Sampling
+    print('Current Active Learning technique: Uncertainty Sampling')
+
     distilbert_emotion_classifier = EmotionClassifier()
     distilbert_active_learner = ActiveLearner(
         estimator=distilbert_emotion_classifier,
@@ -841,54 +1044,97 @@ if __name__ == '__main__':
         X_training=x_train,
         y_training=y_train
     )
-    performance_history['Uncertainty Sampling'].extend(run_active_learning_experiment(
+
+    performance_metrics = run_active_learning_experiment(
         learner=distilbert_active_learner,
-        instances_x_pool=x_pool,
-        instances_y_pool=y_pool,
+        instances_x_pool=x_pool.copy(deep=True),
+        instances_y_pool=y_pool.copy(deep=True),
         instances_x_val=x_val,
         instances_y_val=y_val,
         n_query_iterations=n_iterations,
         n_instances_pool=n_pool_instances
-    ))
+    )
+
+    for metric_key in performance_metrics.keys():
+        performance_history['Uncertainty Sampling'][metric_key] = performance_metrics[metric_key]
+
     performance_history['Uncertainty Sampling Loss'].extend(distilbert_emotion_classifier.training_loss_)
-    distilbert_emotion_classifier.model.save_pretrained(bart_oracles[3])
+    oracle_reliability_scores.append(performance_history['Uncertainty Sampling']['F1-Measure'][-1])
+
+    performance_metrics_test_split = distilbert_emotion_classifier.score(
+        np.stack(
+            np.array(y_test.tolist())
+        ).astype(np.int),
+        np.stack(
+            mlb.transform(
+                distilbert_emotion_classifier.predict(x_test)
+            )
+        ).astype(np.int)
+    )
+
+    for metric_key in performance_metrics_test_split.keys():
+        performance_history_test_split['Uncertainty Sampling'][metric_key] = performance_metrics_test_split[metric_key]
+
+    print('Performance History:')
+    print(performance_history)
+    print('Performance History on Test Dataset:')
+    print(performance_history_test_split)
 
     # Clear GPU memory
+    distilbert_emotion_classifier.model.save_pretrained(oracles_checkpoints[3])
     del distilbert_emotion_classifier.model
     torch.cuda.empty_cache()
 
     # Strategy 5: Proactive Learning with Uncertainty Sampling
-    oracle_reliability_scores = [performance_history[key][-1] for key in sorted(performance_history.keys()) if ' Loss' not in key]
-    
-    performance_history['Proactive Learning Sampling'] = list()
-    performance_history['Proactive Learning Sampling Loss'] = list()
-    
+    print('Current Active Learning technique: Proactive Learning with Random Sampling')
+
     distilbert_emotion_classifier = EmotionClassifier(
         reliability_scores=oracle_reliability_scores
     )
     distilbert_active_learner = ActiveLearner(
         estimator=distilbert_emotion_classifier,
-        query_strategy=margin_sampling,
+        query_strategy=random_query_strategy,
         X_training=x_train,
         y_training=y_train
     )
-    performance_history['Proactive Learning Sampling'].extend(run_proactive_learning_experiment(
+
+    performance_metrics = run_proactive_learning_experiment(
         learner=distilbert_active_learner,
-        instances_x_pool=x_pool,
-        instances_x_val=x_val,
+        instances_x_pool=x_pool.copy(deep=True),
+        instances_x_val=x_val.copy(deep=True),
         instances_y_val=y_val,
         n_query_iterations=n_iterations,
         n_instances_pool=n_pool_instances
-    ))
-    performance_history['Proactive Learning Sampling Loss'].extend(distilbert_emotion_classifier.training_loss_)
-    distilbert_emotion_classifier.model.save_pretrained(distilbert_emotion_classifier.proactive_learning_model_checkpoint)
+    )
 
-    print('Performance History (Proactive Learning Sampling):')
+    for metric_key in performance_metrics.keys():
+        performance_history['Proactive Learning'][metric_key] = performance_metrics[metric_key]
+
+    performance_history['Proactive Learning Loss'].extend(distilbert_emotion_classifier.training_loss_)
+
+    performance_metrics_test_split = distilbert_emotion_classifier.score(
+        np.stack(
+            np.array(y_test.tolist())
+        ).astype(np.int),
+        np.stack(
+            mlb.transform(
+                distilbert_emotion_classifier.predict(x_test)
+            )
+        ).astype(np.int)
+    )
+
+    for metric_key in performance_metrics_test_split.keys():
+        performance_history_test_split['Proactive Learning'][metric_key] = performance_metrics_test_split[metric_key]
+
+    print('Performance History:')
     print(performance_history)
+    print('Performance History on Test Dataset:')
+    print(performance_history_test_split)
     print('Oracle Selection History:')
     print(distilbert_emotion_classifier.oracle_selection_history_)
 
     # Clear GPU memory
+    distilbert_emotion_classifier.model.save_pretrained(distilbert_emotion_classifier.proactive_learning_model_checkpoint)
     del distilbert_emotion_classifier.model
     torch.cuda.empty_cache()
 
@@ -902,81 +1148,81 @@ if __name__ == '__main__':
         {'Loss': np.array(performance_history_list)},
         index=[f'{key} Epoch {index + 1}' for key in sorted(performance_history.keys()) if ' Loss' in key for index in range(len(performance_history[key]))]
     )
-    performance_history_df.to_csv('performance_history_loss.csv')
+    performance_history_df.to_csv('performance_history_loss_distilbert.csv')
 
-    performance_history_list = list()
-    for key in sorted(performance_history.keys()):
-        if ' Loss' not in key:
-            performance_history_list.extend(performance_history[key])
+    performance_history_lists = {
+        'Exact Match Ratio': list(),
+        '0/1 Loss': list(),
+        'Hamming Score': list(),
+        'Hamming Loss': list(),
+        'Precision': list(),
+        'Recall': list(),
+        'F1-Measure': list()
+    }
+
+    for sampling_method in sorted(performance_history.keys()):
+        if ' Loss' not in sampling_method:
+            for metric in sorted(performance_history[sampling_method].keys()):
+                performance_history_lists[metric].extend(performance_history[sampling_method][metric])
 
     performance_history_df = pd.DataFrame(
-        {'Hamming Score': np.array(performance_history_list)},
-        index=[f'{key} Epoch {index + 1}' for key in sorted(performance_history.keys()) if ' Loss' not in key for index in range(len(performance_history[key]))]
+        {metric: performance_history_lists[metric] for metric in sorted(performance_history_lists.keys())},
+        index=[f'{sampling_method} Epoch {index + 1}' for sampling_method in sorted(performance_history.keys()) if ' Loss' not in sampling_method for index in range(len(performance_history[sampling_method]['F1-Measure']))]
     )
-    performance_history_df.to_csv('performance_history_score.csv')
+    performance_history_df.to_csv('performance_history_scores_distilbert.csv')
 
     performance_history_df = pd.DataFrame({'Oracle': np.array(distilbert_emotion_classifier.oracle_selection_history_)})
-    performance_history_df.to_csv('oracle_selection_history.csv')
+    performance_history_df.to_csv('oracle_selection_history_distilbert.csv')
 
-    # Plot the Hamming score history as a line graph
-    hamming_score_history = {key: np.array(performance_history[key]) for key in sorted(performance_history.keys()) if ' Loss' not in key}
-
-    colors = ['indianred', 'slategray', 'blue', 'darkgreen', 'darkorange']
-    markers = ['o', '^', 's', 'D', '1']
-    line_styles = ['dashed', 'dotted', 'dashdot', 'solid', (0, (5, 10))]
+    # Plot the Hamming score history and oracle selection history as a line graph
     fig, ax = plt.subplots(figsize=(8.5, 6), dpi=300)
 
-    for index, key in enumerate(sorted(hamming_score_history.keys())):
-        ax.plot(
-            hamming_score_history[key],
-            label=key,
-            color=colors[index],
-            marker=markers[index],
-            linestyle=line_styles[index]
-        )
-
-    ax.xaxis.set_major_locator(mpl.ticker.MaxNLocator(nbins=5, integer=True))
-    ax.yaxis.set_major_locator(mpl.ticker.MaxNLocator(nbins=10))
-    ax.yaxis.set_major_formatter(mpl.ticker.PercentFormatter(xmax=1))
-
-    ax.set_ylim(bottom=0, top=0.5)
-
-    ax.set_title('Hamming score (Subset Accuracy)')
-    ax.set_xlabel('Query iteration')
-    ax.set_ylabel('Hamming score')
-
-    plt.legend()
-
-    plt.savefig('hamming_score_plot.png', bbox_inches='tight')
-
-    # Plot the oracle selection history as a line graph
-    fig, ax = plt.subplots(figsize=(8.5, 6), dpi=300)
-
-    lns1 = ax.plot(
+    line1 = ax.plot(
         distilbert_emotion_classifier.oracle_selection_history_,
         label='Oracle #',
         color='green'
     )
+
     ax.tick_params(axis='y', labelcolor='green')
-
-    ax2 = ax.twinx()
-    lns2 = ax2.plot(
-        hamming_score_history['Proactive Learning Sampling'],
-        label='Hamming Score',
-        color='black'
-    )
-    ax2.tick_params(axis='y', labelcolor='black')
-
     ax.xaxis.set_major_locator(mpl.ticker.MaxNLocator(nbins=5, integer=True))
     ax.set_yticks(range(4))
     ax.set_title('Oracle Selection History')
     ax.set_xlabel('Query iteration')
     ax.set_ylabel('Least reliable oracle (0) to Most reliable oracle (3)')
 
-    ax2.set_ylabel('Hamming Score', rotation=270, labelpad=15)
+    ax2 = ax.twinx()
 
-    lns = lns1 + lns2
-    labs = [l.get_label() for l in lns]
-    ax.legend(lns, labs, loc='center left')
+    colors = ['indianred', 'slategray', 'blue', 'darkorange', 'black']
+    markers = ['o', '^', 's', 'D', '1']
+    line_styles = ['dashed', 'dotted', 'dashdot', (0, (5, 10)), 'solid']
 
-    plt.savefig('oracle_selection_history_plot.png', bbox_inches='tight')
+    index = 0
+    line2 = list()
+
+    for key in sorted(performance_history.keys()):
+        if ' Loss' not in key:
+            line2.append(ax2.plot(
+                performance_history[key]['F1-Measure'],
+                label=key,
+                color=colors[index]
+            ))
+
+            index += 1
+
+    ax2.tick_params(axis='y', labelcolor='black')
+    ax2.set_ylabel('F1-Measure (Sample Weighted)', rotation=270, labelpad=15)
+
+    lines = list()
+    lines.append(line1[0])
+
+    for line in line2:
+        lines.append(line[0])
+
+    labs = [line.get_label() for line in lines]
+    ax.legend(lines, labs)
+
+    ax2.set_ylim(bottom=0.2, top=0.7)
+    ax2.yaxis.set_major_locator(mpl.ticker.MaxNLocator(nbins=10))
+    ax2.yaxis.set_major_formatter(mpl.ticker.PercentFormatter(xmax=1))
+
+    plt.savefig('oracle_selection_history_plot_distilbert.png', bbox_inches='tight')
