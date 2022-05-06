@@ -78,10 +78,14 @@ Donmez and Carbonell (2008) introduce the Proactive Learning technique that allo
 
 # Results
 
-![Results from the Proactive Learning experiment](results.png 'Results')
+![Results from the Proactive Learning experiment](Results.png 'Results')
 
 The above figure shows the trade-off between query cost and training performance. When the validation performance in the training phase starts to drop, the Proactive Learner selects a new oracle with a higher reliability. This new oracle incurs a higher query cost than the previous oracle. As soon as the validation performance in training starts improving, the previous (less reliable and less costly) oracle
 is chosen again, ensuring optimal training at least cost. This technique performs identical to at least three baseline classifiers that use Entropy Sampling active learning selection criteria, Margin Sampling selection criteria, and Uncertainty Sampling selection criteria. Thus, Proactive Learning is a viable Active Learning technique.
+
+![Correlation between the emotion intensity and the annotator’s confidence in that emotion being present in the given data instance. Spearman rank-correlation coefficient = 0.78.](Emotion_Intensity_Annotator_Confidence_Correlation.png 'Correlation')
+
+In the above figure, we see a positive correlation in the distribution and the medians of the confidence level per intensity, with a Spearman rank-correlation co-efficient of 0.78.
 
 
 # References
