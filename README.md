@@ -62,15 +62,25 @@ If you would like to generate the documentation, then run the following command:
 
 ![Architecture of the underlying Proactive Learner](Architecture_Diagram_Proactive_Learner.png 'Proactive Learner Architecture')
 
+The classifier provides a Scikit-Learn (Pedregosa et al., 2011) API. This allows the classifier to be used for fine-tuning using available libraries. It also allows us to use this classifier within the modAL (Danka and Horvath, 2018) modular Active Learning framework.
+
 
 # Experimental Design
 
 ![Experimental Design Methodology for the Proactive Learning experiment](Experiment_Design_Diagram_Proactive_Learner.png 'Experimental Design Methodology for the Proactive Learning experiment')
 
+Donmez and Carbonell (2008) introduce the Proactive Learning technique that allows for many practical considerations in the traditional Active Learning paradigm. Some of these are:
+
+* There are multiple oracles, each with a different level of expertise. The oracles’ sample-weighted F1-score on the validation dataset is taken as their reliability.
+* The oracles might have different query costs. A higher cost will be attached to the labels obtained from more reliable oracles than from less reliable ones. Again, the sample-weighted F1-score on the validation dataset is taken as the query cost for a single label.
+
 
 # Results
 
-![Priliminary Results from the Proactive Learning experiment. NOTE: This is a work-in-progress and these results will be updated with better results.](preliminary_results.png 'Preliminary Results')
+![Results from the Proactive Learning experiment](results.png 'Results')
+
+The above figure shows the trade-off between query cost and training performance. When the validation performance in the training phase starts to drop, the Proactive Learner selects a new oracle with a higher reliability. This new oracle incurs a higher query cost than the previous oracle. As soon as the validation performance in training starts improving, the previous (less reliable and less costly) oracle
+is chosen again, ensuring optimal training at least cost. This technique performs identical to at least three baseline classifiers that use Entropy Sampling active learning selection criteria, Margin Sampling selection criteria, and Uncertainty Sampling selection criteria. Thus, Proactive Learning is a viable Active Learning technique.
 
 
 # References
@@ -80,6 +90,9 @@ E. Ferracane, G. Durrett, J.J. Li, and K. Erk. 2021. Did they answer? subjective
 P. Donmez and J.G. Carbonell. 2008. Proactive learning: Cost-sensitive active learning with multiple imperfect oracles. In Proceedings of the 17th ACM Conference on Information and Knowledge Management, CIKM'08, page 619–628, New York, NY, USA. Association for Computing Machinery.
 
 T. Danka and P. Horvath. 2018. modAL: A modular active learning framework for Python. Available on arXiv at https://arxiv.org/abs/1805.00979.
+
+F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, P. Prettenhofer, R. Weiss, V. Dubourg, J. Vanderplas, A. Passos, D. Cournapeau, M. Brucher, M. Perrot, and E. Duchesnay. 2011. Scikit-learn: Machine learning in Python. Journal of Machine Learning Research, 12:2825–2830.
+
 
 # Acknowledgements
 
