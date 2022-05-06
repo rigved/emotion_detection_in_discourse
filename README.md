@@ -30,7 +30,7 @@ labels from the current annotations is saved in the file
 Run the code as follows:
 
 ```commandline
-cd code
+cd src
 python proactive_learning.py
 ```
 
@@ -44,13 +44,15 @@ On the other hand, if you would like to run the exploratory data analysis Jupyte
 run the following command:
 
 ```commandline
-cd code
+cd src
 jupyter notebook Exploratory_Data_Analysis.ipynb
 jupyter notebook Exploratory_Data_Analysis_Survey.ipynb
 ```
 
 Once the Jupyter notebook is open, run `Kernel -> Restart & Run All` to re-run all the analysis.
 This analysis ia a work-in-progress as we complete the various parts of the project.
+
+NOTE: The file `Extract_Survey_Data.ipynb` was used to extract data from raw Qualtrics data dumps.
 
 If you would like to generate the documentation, then run the following command:
 
